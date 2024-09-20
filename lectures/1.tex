@@ -1,0 +1,210 @@
+\section{Лекция 1}
+
+\subsection{Принцип Дирихле}
+
+Дана область $ \Omega \in \mathbb{R}^2$
+\[
+M = \left\{ u: \ u = u_0(x,y), \ (x,y) \in \partial \Omega \right\}
+\]
+Среди всех функций \( u \in M \), та функция, которая доставляет минимум <<интегралу Дирихле>> \eqref{1.1} наименьшее значение, является гармонической.
+\[
+\iint\limits_{\Omega}\left[{\left(\frac{\partial u}{\partial x}\right)}^2+{\left(\frac{\partial u}{\partial y}\right)}^2\right] dx dy
+\tag{1.1}
+\label{1.1}
+\]
+
+\subsection{Контрпример Вейерштрасса}
+
+Наименьшее значение может и не достигаться
+\[
+M = \left\{ y: \ y(x) \in C'[-1;1], \ \ y(-1)=-1, y(1)=1 \right\}
+\]
+\[
+J(y) = \int\limits^1_{-1} x^2{(y')}^2 dx, \quad J(y) \geq 0, \ \exists \inf J(y)
+\]
+Докажем, что нижняя граница равна нулю
+\[
+y_\varepsilon(x) = \frac{\arctg(\sfrac{x}{\varepsilon})}{\arctg(\sfrac{1}{\varepsilon})}
+\]
+\[
+{y'}_{\varepsilon}(x) = \frac{1}{\arctg(\sfrac{1}{\varepsilon})} \cdot \frac{1}{1+ \frac{x^2}{\varepsilon^2}} \cdot \frac{1}{\varepsilon} = \frac{\varepsilon} {\arctg (\sfrac{1}{\varepsilon})} \cdot \frac{1}{\varepsilon^2+x^2}
+\]
+\[
+J(y_{\varepsilon}) = \int\limits^1_{-1} x^2{(y_{\varepsilon}')}^2 dx = \int\limits_{-1}^1 \frac{x^2 \varepsilon^2}{\arctg^2(\sfrac{1}{\varepsilon})} \cdot \frac{1}{{(x^2+\varepsilon^2)}^2} dx < \frac{2 \varepsilon}{\arctg(\sfrac{1}{\varepsilon})} \xrightarrow{\varepsilon \rightarrow 0} 0
+\]
+\[
+J(\tilde{y}) = \Int^1_{-1} x^2{(y')}^2 dx = 0 \ \Rightarrow \ y'=0 \ \Rightarrow y = \operatorname{const}
+\]
+Противоречие: \( y(-1)=-1, \quad y(1)=1 \)
+
+\subsection{Контрпример Адамара}
+
+Гармоническая функция может обращать интеграл Дирихле в бесконечность
+\[
+u(x,y) = \Sum_{n=1}^{\infty}\frac{{\rho^2}^{2n}}{2^n} \cos(2^n \theta); \quad x=\rho \cos \theta, \ y=\rho \sin \theta
+\]
+Ряд сходится в круге $\rho \leq 1$, его сумма непрерывна и гармонична внутри этого круга. Однако интеграл Дирихле этой функции, взятый по кругу $ \rho \leq r \leq 1 $ равен
+\[
+\pi \Sum_{n=1}^{\infty} {r^2}^{2n+1} \xrightarrow{r \rightarrow 1} \infty
+\]
+
+\subsection{Метод Ритца}
+Рассмотрим функционал:
+\[
+J(w) = \Int_{a}^{b} f(x, w, w', \ldots, w^{(k)}) \, dx \rightarrow \inf
+\]
+при условии:
+\[
+w \in M \ \text{--- класс допустимых функций}.
+\]
+Используются координатные функции:
+\[
+\psi_0, \psi_1, \ldots, \psi_n, \ldots
+\]
+обладающие следующими свойствами:
+\begin{enumerate}
+	\item Для любого \( n \) и любых \( a_1, \ldots, a_n \in \mathbb{R} \), функция
+	\[
+	w_n = \psi_0 + a_1 \psi_1 + a_2 \psi_2 + \ldots + a_n \psi_n \in M.
+	\]
+	\item Для любого \( w \in M \) и любого \( \varepsilon > 0 \) существует \( n \in \mathbb{N} \), такое что
+	\[
+	\| w - \psi_0 - a_1 \psi_1 - a_2 \psi_2 - \ldots - a_n \psi_n \| < \varepsilon.
+	\]
+\end{enumerate}
+Рассматриваем функционал
+\[
+J(w_n) = F(a_1, \ldots, a_n) \rightarrow \inf,
+\]
+удовлетворяющих уравнениям
+\[
+\frac{\partial J(w_n)}{\partial a_1} = 0, \quad \ldots, \quad \frac{\partial J(w_n)}{\partial a_n} = 0.
+\tag{1.2}
+\label{1.2}
+\]
+Это дает систему уравнений для определения коэффициентов \( a_1, \ldots, a_n \). \\
+
+\textbf{Пример (задача об упругой пластине)}
+
+Рассмотрим область \( \Omega \subset \mathbb{R}^2 \) с границей \( S = \partial \Omega \). Изгиб \( w(x, y) \) удовлетворяет уравнению Софи Жермен:
+\[
+\Delta^2 w = \frac{\partial^4 w}{\partial x^4} + 2 \frac{\partial^4 w}{\partial x^2 \partial y^2} + \frac{\partial^4 w}{\partial y^4} = \frac{q(x, y)}{D}, \quad (x, y) \in \Omega,
+\]
+где \( D \) --- жесткость пластины, \( q(x, y) \) --- интенсивность давления. \\
+Краевые условия:
+\[
+w(x, y) = 0, \quad \frac{\partial w(x, y)}{\partial n} = 0 \quad ( \text{производная по нормали к } S).
+\]
+
+\begin{figure}[h!]
+	\begin{center}
+		\includegraphics[scale=0.3]{images/1_0.png}
+	\end{center}
+	\label{12}
+	\caption{Визуальизация задачи об упругой пластине}
+\end{figure}
+
+
+
+Данную задачу можно привести к следующей вариационной:
+\[
+J(w) = \iint\limits_{\Omega} \left[ \frac{1}{2} (\Delta w)^2 - f w \right] \, d\Omega \rightarrow \inf
+\tag{1.3}
+\label{1.3}
+\]
+где \( f \in C^{1}(\overline{\Omega}) \). \\ \\
+Положим в \eqref{1.3} \( w = w_1 + w_2 \), где
+\[
+w_1 = - \frac{1}{8\pi} \iint\limits_{\Omega} r^2 \ln (r) f(\xi, \eta) \, d\xi \, d\eta,
+\]
+и \( r \) --- расстояние между точками \( (x, y) \) и \( (\xi, \eta) \in \Omega \). \\
+Функционал приводится к виду
+\[
+J(w) = J_0 + \frac{1}{2} \iint\limits_{\Omega} (\Delta w_2)^2 \, dx \, dy \geq J_0.
+\]
+Таким образом, функционал \( J(w) \) ограничен снизу, а следовательно имеет точную нижнюю границу \\ \\
+Введем координатные функции \( \psi_1(x, y), \psi_2(x, y), \ldots, \psi_n(x, y), \ldots \), удовлетворяющие:
+\begin{enumerate}
+	\item \( \psi_n(x, y) \) и их производные вида \( \frac{\partial^{k+l} \varphi_n}{\partial x^k \partial y^l} \) до порядка \( k, l \leq 3 \) принадлежат \( C(\overline{\Omega}) \)
+	\item \( \psi_n(x, y) \) удовлетворяют краевым условиям
+	\item Для любой функции \( \zeta(x, y) \in C^1(\Omega) \) найдется такое \(m\), что выполняется:
+	\[
+	|\zeta(x, y) - \sum_{i=1}^{m} a_i \psi_i(x, y)| < \varepsilon,
+	\]
+	а также для производных:
+	\[
+	\left| \frac{\partial^{k+l} \zeta}{\partial x^k \partial y^l} - \Sum_{i=1}^{m} a_i \frac{\partial^{k+l} \psi_i(x, y)}{\partial x^k \partial y^l} \right| < \varepsilon, \quad k \leq 3, l \leq 3
+	\]
+\end{enumerate}
+Ищем приближенное решение в виде:
+\[
+w_n = a_1 \psi_1 + a_2 \psi_2 + \ldots + a_n \psi_n
+\]
+Определяем коэффициенты \( a_i \) так, чтобы \( J(w_n) \) был минимальным:
+\[
+J_n = \iint\limits_{\Omega} \left[ \frac{1}{2} (\Delta w_n)^2 - f w_n \right] \, dx \, dy
+\]
+Уравнения \eqref{1.2} в данном случае имеют вид:
+\[
+\Sum_{k=1}^n A_{ik} a_k = B_i, \quad i = \overline{1,n},
+\tag{1.4}
+\label{1.4}
+\]
+где
+\[
+A_{ik} = \iint\limits_{\Omega} \Delta \psi_i \Delta \psi_k \, dx \, dy, \quad B_i = \iint\limits_{\Omega} f \psi_i \, dx \, dy
+\]
+Эта система имеет единственное решение \( a_1, \ldots, a_n \), определяющее приближенное решение. \\ \\
+Рассмотрим для произвольных \( b_1, b_2, \ldots, b_n \):
+\[
+\zeta_n = b_1 \psi_1 + b_2 \psi_2 + \ldots + b_n \psi_n
+\]
+Умножив уравнение \eqref{1.4} на \( b_i \) и просуммируем по всем \( i \):
+\[
+\Sum_{i=1}^n \Sum_{k=1}^n A_{ik} a_k b_i = \Sum_{i=1}^n B_i b_i
+\]
+Используя явный вид коэффициентов придем к:
+\[
+\iint\limits_{\Omega} (\Delta w_n \zeta_n - f \zeta_n) \, dx \, dy = 0
+\tag{1.5}
+\label{1.5}
+\]
+
+Решение уравнений \eqref{1.4} при подстановке в \( J_n \) доставляет ему минимальное значение (обозначим его \( J_n^{(0)} \)). Можно показать, что оно равно
+\[
+J_n^{(0)} = -\frac{1}{2} \iint\limits_{\Omega} (\Delta w_n)^2 \, dx \, dy
+\]
+
+С возрастанием \( n \) величина \( J_n^{(0)} \) не возрастает; в то же время она ограничена снизу. По теореме о монотонной переменной у нее есть предел. На основании критерия Коши:
+\[
+\forall \varepsilon >0 \quad \exists N(\varepsilon) \quad \forall n \geq N(\varepsilon) \quad \forall m: \quad 0 \leq J_n^{(0)} - J_{n+m}^{(0)} \leq \frac{1}{2} \varepsilon
+\tag{1.6}
+\label{1.6}
+\]
+Обозначим
+\[
+\frac{\omega_{m+n} - \omega_n}{\sqrt{\varepsilon}} = \varphi (x,y)
+\]
+Используя \eqref{1.5} и \eqref{1.6} с помощью некоторых преобразований можно прийти к 
+\[
+\iint\limits_{\Omega}{(\Delta \varphi)}^2 dx dy < 1
+\]
+К функции \( \varphi (x, y) \) применим формулу
+\[
+\varphi (x,y) = \frac{1}{2\pi}\int\limits_S \left( \varphi \frac{\partial \ln r}{\partial n} - \ln r \frac{\partial  \varphi}{\partial n} \right) dS + \frac{1}{2 \pi} \iint\limits_{\Omega} \Delta \varphi \ln r \ d\xi d \eta
+\]
+Поскольку \( \varphi (x, y) \) является линейной комбинацией координатных функций, она удовлетворяет граничным условиям. Получим
+\[
+\varphi (x,y) = \frac{1}{2 \pi} \iint\limits_{\Omega} \Delta \varphi \ln r \ d\xi d \eta
+\]
+Применяя неравенство Коши-Буняковского к интегралу, получим
+\[
+|\varphi (x,y)| \leq \frac{1}{2\pi}{ \underbrace{\left( \iint\limits_{\Omega} {(\Delta \varphi)}^2 d \xi d \eta \right)}_{\leq 1} }^{1/2} { \underbrace{\left( \iint\limits_{\Omega}{\ln}^2 r \ d\xi d\eta \right)}_{\leq C} }^{1/2}
+\]
+\[
+|\varphi (x,y)| \leq C_1
+\]
+\[ |\omega_{n+m} - \omega_{n} | \leq C_1 \sqrt{\varepsilon} \]
+\[ \omega_n \underset{\Omega}{\rightrightarrows}  w_n(x,y) \in C(\Omega) \]
+
+\newpage
