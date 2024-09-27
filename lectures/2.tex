@@ -1,0 +1,157 @@
+\section{Лекция 2}
+
+\subsection{Метод Бубнова -- Галеркина}
+
+Рассмотрим приближенное решение в виде:
+\[
+w_n = \alpha_1 \varphi_1 + \alpha_2 \varphi_2 + \ldots + \alpha_n \varphi_n + \ldots
+\]
+где \(L\) и \(M\) --- дифференциальные операторы, задающие задачу:
+\[
+L w - \lambda M w = 0
+\]
+Приходим к системе уравнений вида:
+\[
+\sum\limits_{i=1}^{n} (A_{ik} - \lambda B_{ik}) \alpha_k = 0, \quad k = \overline{1,n}
+\]
+Чтобы решение было ненулевым, необходимо и достаточно, чтобы определитель равнялся нулю
+\[
+\begin{vmatrix}
+	A_{11} - \lambda B_{11} & \dots & A_{1n} - \lambda B_{1n} \\
+	\vdots & \ddots & \vdots \\
+	A_{n1} - \lambda B_{n1} & \dots & A_{nn} - \lambda B_{nn}
+\end{vmatrix}
+= 0
+\]
+\[
+N (x,y) = L w_n - \lambda M w_n \enspace \text{--- \enspace невязка}
+\]
+\[
+N(x,y) \perp \varphi_i, \quad i = \overline{1,n}
+\]
+
+\subsection{Повторение}
+
+\begin{enumerate}
+	\item $ f(x) \overset{\text{п.в.}}{=} 0 \Rightarrow \int\limits_{\Omega} f(x) dx = 0 $
+	\item $ \int\limits_{\Omega} f(x) dx = 0, \enspace f(x) \geq 0 \enspace \Rightarrow \enspace f(x)\overset{\text{п.в.}}{=} 0 $
+	\item $ |f(x)| < \varphi(x), \varphi \text{ --- суммируема по Лебегу} \Rightarrow f(x) \text{ --- суммируема по Лебегу} $
+	\item $ \{\varphi_n(x)\} $ --- суммируемы с квадратами по Лебегу
+	\\ \\
+	$\lim\limits_{n,k \rightarrow \infty} \int\limits_{\Omega}{|\varphi_k (x) - \varphi_{n} (x)|}^2 dx = 0
+	$
+	\\
+\end{enumerate}
+
+Обозначим $V$ -- линейное пространство \\
+
+$ (\varphi , \psi) - \text{скалярное произведение:} \quad (\boldsymbol{\cdot},\boldsymbol{\cdot}): V \times V \rightarrow \mathbb{C} $
+
+\begin{enumerate}
+	\item $  (\varphi, \psi) = \overline{(\psi, \varphi)} $
+	\item $ (a_1 \varphi_1 + a_2 \varphi_2, \psi) = a_1 (\varphi_1, \psi) + a_2 (\varphi_2, \psi) $
+	\item $ (\varphi , \varphi) \geq 0 $
+	\item $ (\varphi, \varphi) = 0 \quad \Rightarrow \quad \varphi = \mathbf{0} $
+\end{enumerate}
+
+$ \| \varphi \| = \sqrt{(\varphi, \varphi)} $ \\
+
+\begin{itemize}
+	\item Неравенство Коши-Буняковского
+	
+	$ | (\varphi, \psi) | \leq \| \varphi \| \| \psi \|$
+	
+	\item Неравенство треугольника
+	
+	$ \| \varphi + \psi \| \leq \| \varphi \| + \| \psi \| $
+\end{itemize}
+\[ L_2(\Omega): \quad (\varphi, \psi) = \int\limits_{\Omega}^{} \varphi(x) \overline{\psi(x)}dx \]
+\[ L_2(\Omega , \sigma): \quad (\varphi, \psi) = \int\limits_{\Omega}^{} \varphi(x) \overline{\psi(x)}\sigma (x) dx \]
+\[ L_2(\Omega^m): \quad (\varphi, \varphi) = \int\limits_{\Omega}^{} \sum_{k=1}^{m} \varphi_k(x) \overline{\varphi_k(x)}dx \] \\
+
+\textbf{Критерий линейной зависимости системы функций}
+
+\begin{gather*}
+	\varphi_1, ..., \varphi_n \text{ линейно зависима (ЛЗ) в } H
+	\\
+	\hspace{20mm} \Updownarrow
+	\\
+	\begin{vmatrix}
+		(\varphi_1, \varphi_1) & \dots & (\varphi_1, \varphi_n) \\
+		\vdots & \ddots & \vdots \\
+		(\varphi_n, \varphi_1) & \dots & (\varphi_n, \varphi_n)
+	\end{vmatrix}
+	= 0
+\end{gather*} \\
+
+\textbf{Опр.} $M$ --- плотно в $H$, если $ \forall p \in H$ и $\forall \varepsilon >0 \enspace \exists \varphi_n \in M: \| \varphi_n - \varphi \| < \varepsilon $. \\
+
+$ C_0^{(\infty)} (\Omega) $ плотно в $ L_2(\Omega) $
+
+$\quad \quad \quad \quad \quad \uparrow$
+
+$ \forall \varepsilon > 0 : \quad \forall \varphi \in H \quad $
+\begin{tabular}[t]{l}
+	$ \exists \varphi_n^1 \in C_0^{(\infty)}(\Omega) : \quad \|\varphi_n^1 - \varphi\| < \varepsilon/2 $ \\
+	$ \exists \varphi_n^2 \in C_0^{\infty} (\Omega) : \quad \|\varphi_n^2 - \varphi_n^1\| < \varepsilon/2 $ \\
+	$...$
+\end{tabular}
+
+$ C_0^{(k)} (\Omega) $ плотно в $ L_2(\Omega) $ \\ \\
+
+$ \{\varphi_n \} $ --- ортонормированная система (ОНС)
+
+$ (\varphi_n, \varphi_m) = \delta _{nm} $
+
+$ {\|\varphi\|}^2  = {\|\varphi_1\|}^2 +{\|\varphi_2\|}^2+ ... +{\|\varphi_n\|}^2 + ...$ \\
+
+
+$ \{ \varphi_n \} $ полная в  $H$, если из $ (\varphi, \varphi_k) = 0 \enspace \forall k \in \mathbb{N} \quad \Rightarrow \quad \varphi = \mathbf{0} $
+
+
+$ \forall \varphi \in H: \quad a_k = (\varphi, \varphi_k) - \textrm{ коэффициенты Фурье} $ \\
+
+
+\textbf{Теор.} $H$ --- гильбертово, $\{\varphi_k\}$ --- полная ортонормированная система (ПОНС) \\ \\
+$ \Rightarrow {\| \varphi \|}^2 = \sum\limits^{\infty}_{k=1} {|a_k|}^2  = \sum\limits^{\infty}_{k=1} {|(\varphi, \varphi_k)|}^2 $ --- равенство Парсеваля \\ \\
+
+\textbf{Теор.} $ \exists a_k: \quad \sum\limits_{k=1}^{\infty} {|a_k|}^2 $ сходится, $\{\varphi_n\}$ --- ПОНС в $H$, тогда: \\ \\ $\sum\limits_{k=1}^{\infty} a_k \varphi_k$ сходится по $\|\boldsymbol{\cdot}\|$ к $\varphi \in H$, при этом $\|\varphi\| = \sum\limits_{k=1}^{\infty} {|a_k|}^2$. \\ \\
+
+
+\textbf{Опр.} $H$ cепарабельно если $ \exists M - $ счетное мн-во плотное в H. \\
+
+\textbf{Теор.} $H$ сепарабельно $ \Leftrightarrow \exists $ ПОНС (счетная или конечная) в $H$. \\
+
+$ \{ u: \int\limits_{\Omega}^{} u dx = 0 \} $ --- пример подпространства в $ L_2(\Omega) $. \\ \\
+
+Пусть $ H_1 $ --- подпространство в $H$
+
+$ \forall \varphi \in H \quad \exists ! \varphi_1 \in H_1: \| \varphi - \varphi_1 \| = \underset{\psi \in H_1}{\min}  \| \varphi - \psi \| $ --- проекция $\varphi$ на $H_1$
+
+$ \varphi = \varphi_1 + \varphi_2 $, \quad \quad $ H_2 = \varphi \perp H_1 $ --- ортогональное дополнение \\
+
+$l$ --- линейный функционал $: \quad M \subset H \rightarrow \mathbb{R}/\mathbb{C} $
+
+$ |l_{\varphi}| \leq \|l\| \cdot {\|\varphi\|}_H $
+
+$ \underset{\psi \rightarrow \varphi}{\lim} l_\psi = l_\varphi \quad \quad \quad \forall \varepsilon > 0 \quad \exists \delta: \| \psi - \varphi \| < \delta: \quad |l_\psi - l_\varphi| < \varepsilon$ \\ \\
+
+\textbf{Теор. (Рисса)} $ \forall l $ --- непрерывного линейного функционала в $H$ $\exists! \psi \in H:  l_\varphi = (\varphi, \psi)$ \\ \\
+
+
+Пусть $M$ --- плотно в $H$, \quad $\Phi: M \times M \rightarrow \mathbb{C} (\mathbb{R})  $
+
+$ \Phi(\varphi, \psi): \Phi(\varphi, \psi) = \overline{\Phi(\psi, \varphi)} $
+
+$ \Phi(\varphi, \varphi) $ --- квадратичная форма \\ \\
+
+
+$ H: D_A \subset H $ --- область определения некоторого оператора А
+
+Линейный оператор $A$ ограничен $\Leftrightarrow A$ непрерывен
+
+$\varphi \in D_A, \quad A\varphi \in R_A$ --- область значений оператора $A$
+
+$\varphi \in D_A \rightarrow ! \enspace A\varphi \in R_A$
+
+\newpage
