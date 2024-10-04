@@ -1,0 +1,195 @@
+\section{Лекция 3}
+
+\begin{equation*}
+	\left.\begin{aligned}
+		&Au=f \\
+		&u, f \in H
+	\end{aligned}\quad \right | \quad \Omega \subset \mathbb{R}^m, \quad H = L_2(\Omega)
+\end{equation*}
+
+\[
+\begin{cases}
+	-\Delta u = f, \qquad f \in C(\overline{\Omega}) \\
+	u |_{s} = 0
+\end{cases}
+\]
+\[ D_A = \{u \in C^2 (\overline{\Omega}); \enspace u|_s = 0\} \]
+\[ A = -\Delta u \] \\
+
+\textbf{Формула Остроградского}
+
+\[ \int\limits_{\Omega}\left(\frac{\partial \varphi}{\partial x } + \frac{\partial \psi }{\partial y} + \frac{\partial \omega}{\partial y}\right) d\Omega = \int\limits_{S } \biggl( \varphi \cos(\overline{n} \cdot x) + \psi \cos(\overline{n}\cdot y) + \omega \cos (\overline{n} \cdot z) \biggr) dS\]
+\[ W =
+\begin{pmatrix}
+	\varphi \\
+	\psi \\
+	\omega
+\end{pmatrix}
+\qquad \qquad \int\limits_{\Omega}^{} \text{div} W d\Omega = \int\limits_{S}^{} W_n dS
+\] \\
+
+
+Пусть $ \varphi = uv, \ \psi = \omega = 0 $
+
+\[ \int\limits_{\Omega} u \frac{\partial v }{\partial x } d \Omega = - \int\limits_{\Omega}^{} v \frac{\partial u }{\partial x } d \Omega + \int\limits_{S}^{} uv \cos(\overline{n} \cdot x) dS \]
+
+\begin{equation}
+	\label{3.0}
+	\tag{3.0}
+	\int\limits_{\Omega } u \frac{\partial v }{\partial x_i} d \Omega = - \int\limits_{\Omega }^{} v \frac{\partial u}{\partial x_i} d \Omega + \int\limits_{S }^{} uv cos(\overline{n} \cdot x_i ) dS \qquad \text{в} \ \mathbb{R}^m
+\end{equation} \\
+
+\subsection{Формулы Грина}
+
+\[ Lu = - \sum_{i,k =1}^{m } \frac{\partial }{\partial x_i} \left(A_{ik} (P) \frac{ \partial u(P)}{\partial x_k}\right) + C(P) u(P) \]
+
+\[ D_L = \{ u \in C^2(\overline{\Omega}) \}, \quad P \in \Omega \subset \mathbb{R}^m, \quad C(P) \in C(\overline{\Omega}) \]
+\[ A_{ik}(P) \in C(\overline{\Omega}), \quad A_{ik}(P) = A_{ki}(P) \enspace \forall P, \quad i,k=\overline{1,n} \]
+\[ \int\limits_{\Omega} v Lu d \Omega = - \sum_{i,k =1}^{m }  \int\limits_{\Omega} v \frac{\partial }{\partial x_i} \left(A_{ik} \frac{ \partial u}{\partial x_k}\right) d \Omega + \int\limits_{\Omega}^{}C u v d \Omega  \]
+
+в \eqref{3.0} подставим $ u \rightarrow v, v \rightarrow A_{ik} \frac{\partial u }{\partial x_k }$
+
+\begin{equation}
+	\label{3.1}
+	\tag{3.1}
+	\int\limits_{\Omega}^{} v L u d\Omega = \int\limits_{\Omega}^{} \sum_{i,k = 1}^{m}A_{ik} \frac{\partial u }{\partial x_k} \frac{\partial v }{\partial x_i} d\Omega + \int\limits_{\Omega} C u vd\Omega - \int\limits_{S }^{} v \sum_{i,k=1}^{m} A_{ik} \frac{\partial u}{\partial x_k } cos(\overline{n} \cdot x_i ) dS
+\end{equation}
+
+\begin{equation}
+	\label{3.2}
+	\tag{3.2}
+	\int\limits_{\Omega}^{} u L u d\Omega = \int\limits_{\Omega} \left[ \sum_{i,k = 1}^{m}A_{ik} \frac{\partial u }{\partial x_i} \frac{\partial u }{\partial x_k} + Cu^2 \right] d\Omega - \int\limits_{S } u \sum_{i,k =1}^{m} A_{ik} \frac{\partial u}{\partial x_k } cos(\overline{n} \cdot x_i ) dS
+\end{equation}
+
+из \eqref{3.1} вычитаем ее же, но поменяв местами $u$ и $v$: \qquad $ \eqref{3.1} - \eqref{3.1}_{u \rightleftarrows v} $
+
+\begin{equation*}
+	\begin{split}
+		\int\limits_{\Omega }^{} (vLu - uLv) d\Omega = & \int\limits_{\Omega} \cancelto{0}{\left[ \sum_{i,k = 1}^{m}A_{ik} \frac{\partial u }{\partial x_k} \frac{\partial v }{\partial x_i} - \sum_{i,k = 1}^{m}A_{ik} \frac{\partial u }{\partial x_i} \frac{\partial v }{\partial x_k} \right]} d\Omega \ - \\
+		& - \int\limits_{S} \left[ v \sum_{i,k =1}^{m} A_{ik} \frac{\partial u}{\partial x_k } cos(\overline{n} \cdot x_i ) - u \sum_{i,k =1}^{m} A_{ik} \frac{\partial v}{\partial x_k } cos(\overline{n} \cdot x_k )\right] dS
+	\end{split}
+\end{equation*}
+
+\[ N u := \sum_{i,k=1}^{m } A_{ik } \frac{\partial u }{\partial x_i } cos(\overline{n} \cdot x_i) \]
+
+\begin{equation}
+	\label{3.3}
+	\tag{3.3}
+	\int\limits_{\Omega} \left( vLu - uLv \right) d\Omega = \int\limits_{S} \left( uNv - vNu \right) dS
+\end{equation}
+
+Частный случай формул Грина, это оператор Лапласа:
+
+\[ Lu = - \Delta u; \ A_{ii} = 1; \ A_{ik} = 0, \ i \neq k; \ C = 0 \]
+
+\begin{equation}
+	\label{3.4}
+	\tag{3.4}
+	- \int\limits_{\Omega} v \Delta u d\Omega  = \int\limits_{\Omega}^{} \sum_{i=1}^{m } \frac{\partial u }{\partial x_i }  \frac{\partial v }{\partial x_i} d \Omega - \int\limits_{S }^{} v \frac{\partial u }{\partial n } dS
+\end{equation}
+
+\begin{equation}
+	\label{3.5}
+	\tag{3.5}
+	- \int\limits_{\Omega} u \Delta u d \Omega = \int\limits_{\Omega}^{} {\left(\frac{\partial u }{\partial x_i}\right)}^2 d \Omega - \int\limits_{S }^{} u \frac{\partial u }{\partial n } dS
+\end{equation}
+
+\begin{equation}
+	\label{3.6}
+	\tag{3.6}
+	- \int\limits_{\Omega} (v \Delta u - u \Delta v ) d\Omega = \int\limits_{S }^{} \left(v \frac{\partial u }{\partial n } - u \frac{\partial v}{\partial n}\right) dS
+\end{equation}
+
+\subsection{Положительные операторы}
+
+Пусть оператор $A$ симметричен в $H$
+
+\textbf{Опр.} Оператор называется положительным, если $ \forall u \in D_A \subset H, \qquad (Au, u) \geq 0 \Leftrightarrow u = 0 $ \\
+
+\textbf{Пр. 1}
+\[Bu = -\frac{ d^2 }{d x^2 }u \qquad \textrm{в } L_2 (0,1); \qquad D_B = \{u \in C^2_0 (0,1): u(0) = u(1) = 0\} \]
+\[ (B u, v) = - \int\limits_{0}^{1} v  \frac{d^2 u }{d x^2} dx = \int\limits_{0}^{1} \frac{du }{dx} \frac{d v }{d x } dx - v \left.\frac{d u }{dx }\right|^1_0 = - \int\limits_{0}^{1} u \frac{d^2v }{dx^2 } = (u, Bv) \quad \forall u,v \in D_B \]
+\[ (Bu, u) = \int\limits_{0}^{1} {\left(\frac{du }{dx }\right)}^2 dx = 0 \]
+\[ (Bu, u) = 0 \Rightarrow \frac{du }{dx } = 0 \Rightarrow u = const, u(0) = 0 \Rightarrow u = 0 \]
+
+\textbf{Пр. 2}
+\[ Cu = - \frac{ d^2 }{dx^2 }u, \qquad D_C = \left\{ u \in C^2(0,1),
+\begin{cases}
+	u'(0)+\alpha u(0)=0 \\
+	u'(1)+\beta u(1)=0
+\end{cases}
+\alpha, \beta = const
+\right\}
+\]
+\[(Cu, v) = \int\limits_{0}^{1} \frac{du}{dx} \frac{dv}{dx} dx + \alpha u(0)v(0) + \beta u(1)v(1) = (u, Cv)\]
+\[\alpha > 0, \beta \geq 0\]
+\[(Cu, u) = \int\limits_{0}^{1} {\left(\frac{du}{dx}\right)}^2 dx + \alpha u^2(0) + \beta u^2(1) \geq 0\]
+\[\alpha = \beta = 0, \quad u \equiv 1 \Rightarrow (Cu, u) = 0 \Rightarrow C \text{ не является положительным}\]
+
+\textbf{Пр. 3}
+\[ Au = - \Delta u , \qquad D_A = \{ u \in C^2(\Omega): \quad u|_s = 0, \quad \Omega \subset \mathbb{R}^m, S = \partial \Omega, H = L_2(\Omega) \} \]
+\[ (Au, u) = (-\Delta u, u ) = - \int\limits_{\Omega }^{} u \Delta u d \Omega = \int\limits_{\Omega }^{} \sum_{i = 1}^{m } {\left(\frac{\partial u }{\partial x_i }\right)}^2 d\Omega - \cancelto{0}{\int\limits_{S }^{} u \frac{\partial u }{\partial n } dS}  \geq 0 \]
+\[ \frac{\partial u }{\partial x_i } = const, \ u|_s = 0 \Rightarrow u = 0 \]
+
+\newpage
+
+Рассмотрим мембрану
+
+$\Omega$ в плоскости $(x,y)$, $\ u(x,y)$ --- изгиб мембраны
+\[ - \Delta u = \frac{q}{T} \]
+
+$q$ --- поперечная нагрузка на единицу площади
+
+$T$ --- натяжение мембраны
+
+$ {u|}_S = 0 $ --- мембрана закреплена на краях
+\[ (A u , u) = (- \Delta u , u) = \iint\limits_{\Omega} \left[ \left(\frac{\partial u }{\partial x }\right)^2 + \left(\frac{ \partial u }{\partial y }\right)^2 \right] dx dy  \]
+
+\subsection{Положительно определенные операторы}
+
+\textbf{Опр.} Симметричный оператор $A$ называется положительно определенным, если
+\begin{equation}
+	\exists \gamma > 0 : (Au, u) \geq \gamma^2 {\|u\|}^2
+\end{equation} \\
+\textbf{Пр. 1 (продолжение)}
+\[ B: u(0) = 0, u \in D_B \]
+\[ u(x) = \int\limits_{0}^{x } u'(t) dt, \quad x \in [0, 1] \]
+\[ u^2(x) \leq \int\limits_{0}^{x} 1^2 dt \cdot \int\limits_{0}^{x} {(u'(t))}^2 dt = x \int\limits_{0}^{x} {(u'(t))}^2 dt \leq x \int\limits_{0}^{1} {(u'(t))}^2 dt \]
+\[ \int\limits_{0}^{1} u^2 (x) dx \leq \frac{1}{2} \int\limits_{0}^{1} {(u'(t))}^2 dt \]
+\[ \gamma^2 \|u\|^2 \leq (Bu, u) , \quad \gamma = \sqrt{2} \quad \Rightarrow B \text{ является положительно определенным} \] \\
+\textbf{Пр. 4}
+\[ Lu = - \frac{d }{ d x } \left(x^3 \frac{du}{dx}\right) \quad \text{в } L_2 (0,1) \]
+\[ D_L = \{u \in C^2[0,1], \ u(1) = 0 \} \]
+\[(Lu, v) - (u, Lv) = \int\limits_{0}^{1} \frac{d}{dx} \left[ x^3 \left(u \frac{dv }{dx } - v \frac{du }{dx } \right)  \right] dx = \left. \left[ x^3 \left(u \frac{dv }{dx } - v \frac{du }{dx } \right) \right] \right|_0^1 = 0\]
+\[ (Lu, u) = \int\limits_{0}^{1} x^3 {\left(\frac{du }{dx }\right)}^2 dx \geq 0 \quad \Rightarrow L \text{ является положительно определенным} \]
+\[ \frac{(Lu, u)}{\|u\|^2} \geq \gamma^2, \qquad u_\delta (x) = \begin{cases}
+	(\delta - x)^3, & 0 \leq x \leq \delta \\
+	0, & \delta \leq x \leq 1
+\end{cases}, \qquad u_\delta \in \mathcal{D}_L  \]
+\[ \frac{(Lu_\delta , u_\delta)}{{\|u_\delta\|}^2}  = \frac{\int_{0}^{1} x^3 {(\frac{du_\delta}{dx})}^2 dx}{\int_{0}^{\delta} {(\delta -x)}^3 dx} = \frac{9 \int_{0}^{1} x^3 {(\delta -x)}^4 dx}{\int_{0}^{\delta} {(\delta -x)}^6 dx} = \frac{9}{40} \delta \quad \Rightarrow L \text{ не явл. положительно опр.} \]
+
+\newpage
+
+\subsection{Энергетическая норма}
+Пусть $A$ --- положительно определен в $H$ (гильберт.) \\
+На $D_A: \quad {[u, v]}_A = {(A u, v)}_H$ \\
+Можно показать что выполняются все аксиомы скалярного произведения
+
+\begin{enumerate}
+	\item $ {[u, v]}_A = \overline{[v, u]}_A $ \\
+	$ (Au, v) = (u, Av) = \overline{(Av, u)} = \overline{[v, u]} $
+	\item $ [a_1 u + a_2 u, v] = a_1[u, v] + a_2[u, v]$
+	\item $ (Au, u) = [u, u] \geq \gamma \|u\|^2 \geq 0 $
+	\item $ [u, u] = 0 \Leftrightarrow u = 0 $
+\end{enumerate}
+
+$ |u| = [u, u] $ --- энергетическая норма
+
+$ D_A $ предгильбертово, дополним его по $ {|\boldsymbol{\cdot}|}_A \ \Rightarrow \ $ гильбертово пр-во $ H_A $
+
+\[ u \in H_A \Leftrightarrow \left[ \begin{array}{l}
+	u \in D_A \\
+	\exists u : \ \{ u_n \} \in D_A: \ | u_n - u | \underset{n \rightarrow \infty}{\rightarrow} 0
+\end{array} \right. \]
+
+\newpage
