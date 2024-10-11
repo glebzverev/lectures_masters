@@ -1,0 +1,148 @@
+\section{Лекция 4}
+
+\subsection{Энергетическое пространство}
+
+Пусть $A$ --- положительно определен в $H$ (гильберт.) \\
+На $D_A: \enspace \begin{array}{l}
+	{[u, v]}_A = {(A u, v)}_H \\
+	{\|u\|}_A = {[u,u]}_A
+\end{array} $ \\
+$ H_A $ --- энергетическое пространство
+\[ {\|u\|}_H \leq \frac{1}{\gamma   } {\|u\|}_A \label{4.0} \tag{4.0} \]
+\[ u \in H_A \begin{array}{l@{\ }l}
+	\raisebox{-1ex}{$\nearrow$} & u \in D_A \\
+	\raisebox{1ex}{$\searrow$} & \exists \{ u_n \} \in D_A: \ \lim\limits_{n \rightarrow \infty} {\|u_n - u\|}_A = 0
+\end{array} \]
+
+
+\textbf{Теор.} $ \qquad \forall u \in H_A \rightarrow $ только один элемент из $H$, причем различные $u_1, u_2 \in H_A$ отвечают различным элементам из $H$
+
+\underline{Док-во.}
+
+\begin{enumerate}
+	\item
+	$ {u_n}: \lim\limits_{n \rightarrow \infty} {\|u_n - u\|}_A = 0 $ \\
+	$ {\|u_n - u_m\|}_A \leq {\|u_n - u\|}_A + {\|u_m - u\|}_A \underset{n,m \rightarrow \infty}{\rightarrow} 0 $ \\
+	$ \Rightarrow {\|u_n - u_m\|}_H \rightarrow 0 $ при $ n,m \rightarrow \infty $ \\
+	$ \Rightarrow \exists \lim\limits_{n \rightarrow \infty} {\|u_n - u_m\|}_H = 0 $
+	
+	\item
+	$ u_{1, n} \underset{{\|\cdot\|}_A}{\rightarrow}  u_1, \quad u_{2, n} \underset{{\|\cdot\|}_A}{\rightarrow}  u_2 $ \\
+	$ u_1 \ \text{и} \ u_2 \rightarrow u \in H, \qquad u = u_1 - u_2$ \\
+	$ \exists \{u_n\} \in H_A \qquad {\|u_n - u\|}_A \rightarrow 0 $ \\
+	$ \forall f \in H \qquad |(f, u_n)| \overset{\text{КБ}}{\leq} \|f\|\cdot\|u_n\| \leq {\|f\|}_A\cdot\frac{1}{\gamma}\cdot{\|u_n\|}_A \rightarrow 0 $ \\
+	$ \forall \varphi \in D_A \qquad A\varphi = f \in H $ \\
+	Тогда $ (A\varphi, u_n) \rightarrow 0 $ \\
+	$ {[\varphi, u_n]}_A = (A\varphi, u_n) \rightarrow 0 $ \\
+	Переходя к пределу: $ {[\varphi, u]}_A = 0 \ \forall \varphi \qquad \Rightarrow u = 0 \Rightarrow u_1 = u_2 \hfill \square $
+\end{enumerate}
+
+Неравенство \eqref{4.0} выполняется не только в $D_A$, но и во всем пространстве $H_A$. Пусть $u \notin D_A$, тогда:
+\[ \exists \{u_n\} \in D_A \qquad {\|u_n - u\|}_A \rightarrow 0, \ \text{при этом} \ {\|u_n - u\|}_H \rightarrow 0 \]
+
+Отсюда вытекает, что
+\[ {\|u_n\|}_A \rightarrow {\|u\|}_A \qquad {\|u_n\|}_H \rightarrow {\|u\|}_H \]
+
+Так как, $u_n \in M$, то для $u_n$ справедливо ${\|u_n\|}_H \leq \frac{1}{\gamma} {\|u_n\|}_A$. Переходя к пределу при $n \rightarrow \infty$ получим
+\[ {\|u\|}_H \leq \frac{1}{\gamma} {\|u\|}_A \] \\ \\
+
+\textbf{Пример 1}
+\[ Bu = - \frac{d^2}{d x^2}u, \qquad D_{B} = \{u \in C^2 [0,1], \ u(0) = u(1) = 0 \} \]
+\[ H = L_2 (0, 1), \ u \in H_B \]
+\[ u \in H_B, \quad \exists \{u_n\} \in D_B \quad {\|u_n - u\|}_B \rightarrow 0 \]
+\[ {\|u_n - u_k\|}_B \leq {\|u_n - u\|}_B + {\|u_k - u\|}_B \underset{n,k \rightarrow \infty}{\rightarrow} 0 \]
+\[ {\|u_n - u_k\|}_B^2 = \int\limits_{0}^{1} {\left(\frac{du_n}{dx} - \frac{du_k}{dx} \right)}^2 dx \underset{n,k \rightarrow \infty}{\rightarrow} 0 \]
+\[ \Rightarrow \left\{ \frac{du_n}{dx} \right\} \ \text{фундаментальна в} \ L_2(0,1) \Rightarrow \exists v(x) \in H\]
+\[ u_n(x) = u_n(0) + \int\limits_{0}^{x} u_n^{'}(t) dt, \quad u_n \in D_B, \qquad \ \text{при} \ x=0:\ u_n(0) = 0 \]
+\[ \text{Переходя к пределу:} \quad u(x) = \int\limits_{0}^{x} v(t) dt \quad \text{и} \quad u(0)=0\]
+\[ u(1) = \int\limits_{0}^{1} v(t) dt = \lim\limits_{n \rightarrow \infty} \int\limits_{0}^{1} u_n^{'}(t) dt = \lim\limits_{n \rightarrow \infty} \left( u_n(1) - u_n(0) \right) = 0 \]
+\[ \text{Следовательно,} \ u \ \text{абсолютно непрерывная на} [0,1], \text{удовлетворяет граничным условиям}\]
+\[ u' \in L_2(0,1) \]
+
+\textbf{Пример 2}
+\[ Cu = - \frac{d^2}{dx^2} u(x); \qquad u'(0)+\alpha u(0)=0, \ u'(1) + \beta u(1)=0 \]
+\[ \exists \{u_n\} \in D_C, \quad \alpha > 0, \ \beta \geq 0 \]
+\[ \int\limits_{0}^{1} {\left( \frac{du_n}{dx} - \frac{du_k}{dx} \right)}^2 dx \underset{n, k \rightarrow \infty}{\rightarrow} 0 \]
+\[ |u_n(0) - u_k(0)| \underset{n, k \rightarrow \infty}{\rightarrow} 0 \]
+\[ u_n(x) = u_n(0) + \int\limits_{0}^{x} u_n'(t) dt \]
+\[ u(x) = c_0 + \int\limits_{0}^{x} v(t) dt \]
+
+\textbf{Теор.} Пусть оператор $A$ положительный, но не положительно определенный. Тогда
+\[ u \in H_A: \quad u \in H \Leftrightarrow \exists \{ u_n \} \in D_A \]
+\[ {\| u = u_n \|}_A \underset{n \rightarrow \infty}{\rightarrow} 0 \quad \text{и} \quad {\| u_k - u_n \|}_H \underset{n,k \rightarrow \infty}{\rightarrow} 0 \]
+
+\textbf{Пример 3}
+\[ Lu = - \frac{d}{dx} \left( x^3 \frac{du}{dx} \right), \qquad u(1)=0 \]
+\[ D_L = \{u \in C^2 [0,1], \ u(1) = 0 \} \]
+\[ H_L = \left\{ u \ \text{абсолютно непрерывна на} \ [0,1], \quad u(1)=0, \quad \int\limits_{0}^{1} x^3 {u'}^2 dx = 0 \right\} \]
+\[ \tilde{u} = \frac{1}{x} - 1 \]
+
+\subsection{Энергетический метод}
+(для положительно определенных операторов)
+\[ Au = f, \qquad A: \enspace D(A) \subset H \rightarrow H \label{4.1} \tag{4.1} \]
+
+\textbf{Теор.} $A$ положителен в $H$, тогда уравнение \eqref{4.1} имеет не более одного решения.
+
+\underline{Док-во.}
+\[ \text{Пусть} \ u_1, u_2 \ \text{--- решения \eqref{4.1}} , \quad \tilde{u} = u_1 - u_2, \quad Au_1 = f, \quad Au_2 = f \]
+\[ A \tilde{u} = 0 \]
+\[ \left( A \tilde{u}, \tilde{u} \right) = {[\tilde{u}, \tilde{u}]}_A = {\| \tilde{u} \|}^2_A = 0 \hfill \square \]
+
+\textbf{Теор. (о функционале энергии)} Если $A$ --- является положительным в $H$; $u$ --- решение уравнения \eqref{4.1} $ \Leftrightarrow $ $u$ доставляет минимум функционалу
+\[ F(u) = {(Au, u)}_H - {(f, u)}_H - {(u, f)}_H \label{4.2} \tag{4.2} \]
+
+\underline{Док-во.}
+
+Заметим, что $D_A = D_F$ (вытекает из выражения \eqref{4.2}). Также $F(u) = (Au, u) - 2 \operatorname{Re}(u, f)$, и так как $A$ положительный оператор, то $F(u)$ принимает только вещественные значения.
+\begin{itemize}
+	\item[\textcircled{$\Rightarrow$}] 
+	
+	\[ u_0: \ Au_0 - f = 0 \]
+	\[ \forall v \in D_A = D_F, \quad v = u_0 + \eta \]
+	\begin{align*}
+		F(v) &= (A(u_0 + \eta), u_0 = \eta) - (u_0 + \eta, f) - (f, u_0 + \eta) \overset{\text{симм.} A}{=} \\
+		&= F(u_0) + (Au_0 -f, \eta) + (\eta, Au_0 - f) + (A\eta, \eta) \overset{Au_0 - f = 0}{=} \\[1ex]
+		&= F(u_0) + A(\eta, \eta) \geq F(u_0) \Rightarrow u_0 = \underset{D_F}{\operatorname{argmin}} F
+	\end{align*}
+	
+	\item[\textcircled{$\Leftarrow$}]
+	
+	\[ u_0 = \underset{D_F}{\operatorname{argmin}} F \]
+	\[ \forall \eta \in D_A: \ v = u_0 + \lambda \eta \in D_A = D_F, \quad \lambda \in \mathbb{R} \]
+	\[ F(v) \geq F(u_0) \]
+	Используя симметричность $A$ приведем к виду 
+	\[ 2\lambda \operatorname{Re} [(Au_0 -f, \eta)] + \lambda^2 (A\eta, \eta) \geq 0 \]
+	Это возможно только тогда, когда
+	\[ \operatorname{Re} [(Au_0 -f, \eta)] = 0 \]
+	Заменив $\eta$ на $i \eta$, получим
+	\[ \operatorname{Im} [(Au_0 -f, \eta)] = 0 \]
+	Получаем
+	\[ (Au_0 -f, \eta) = 0 \quad \forall u \in D_A \Rightarrow Au_0 - f = 0 \hfill \square \]
+\end{itemize}
+
+\textbf{Замеч.}
+Если пространство вещественное, получим $F(u) = A(u, u) - 2(u, f)$ \\
+
+\textbf{Пример 4}
+\[ A \omega = \Delta^2 \omega = \frac{\partial^4 \omega}{\partial x^4} + 2 \frac{\partial^4 \omega }{\partial^2 x \partial^2 y} + \frac{\partial^4 \omega }{\partial y ^4} \]
+\[ D_A = \left\{ \omega \in C^4(\overline{\Omega}); \quad \left. \omega \right|_S = 0; \quad \left. \frac{\partial \omega}{\partial n} \right|_S = 0 \right\} \]
+
+\[ A \omega = \frac{q(x,y)}{\mathcal{D}} \]
+
+\subsection{Обобщение решения задачи о min для функционала}
+$A$ --- положительно определенный в $H$, $\quad Au=f \enspace \eqref{4.1}, \enspace f \in H$
+\[\text{фикс.}\ f \in H \quad \forall u \in H_A \quad {(u, f)}_H: \ \text{ф-ла} \ H_A \rightarrow \mathbb{R}/ \mathbb{C} \]
+\[ | {(u, f)}_H | \overset{\text{КБ}}{\leq} {\|f\|}_H {\|u\|}_H \leq {\|f\|}_H \frac{1}{\gamma} {\|u\|}_A; \qquad \gamma, \enspace {\|f\|}_H - const \qquad \Rightarrow \ \text{ограничен} \]
+\[ \text{огр.} \ (f, u) \Rightarrow \ \text{по теор. Рисса} \ \exists \ u_0 \in H_A: \ {(f, u)}_H = {[u, u_0]}_A \]
+\[ F(u) = {[u, u]}_A - {[u, u_0]}_A - {[u_0, u]}_A \label{4.star} \tag{4.*} \]
+\[ \pm \enspace {[u_0, u_0]}_A \qquad \text{в} \ \eqref{4.star} \]
+\[ F(u) = {\| u - u_0 \|}^2_A - {\|u_0\|}^2_A  \]
+\[ \underset{u \in H_A}{\operatorname{argmin}} F(u) = u_0 \ \text{--- обобщенное решение} \ Au = f \] \\ \\
+
+$H$ --- сепарабельно $\Rightarrow$ $H_A \enspace \exists \{ \omega_n \} $ ПОНС
+
+\[ u_0 = \sum_{n=1}^{\infty} [u_0, \omega_n] \ \omega_n  \]
+\[ u = \omega_n, \qquad {[u_0, \omega_n]}_A = {(f, \omega_n)}_H \]
+\[ u_0 = \sum_{n=1}^{\infty} {(f, \omega_n)}_H \ \omega_n \]
+
+\newpage
