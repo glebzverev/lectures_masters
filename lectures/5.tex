@@ -1,0 +1,181 @@
+\section{Лекция 5}
+
+\textbf{Пример} (задача о кручении стержня)
+
+\[ \left\{ \begin{array}{l}
+	-\Delta \psi = 2 G \Theta  \\
+	\left. \psi \right|_{\partial\Omega} = 0  
+\end{array} \right. \]
+
+$G$ --- модуль сдвига
+
+$\Theta$ --- угол закручивания
+\[ \Omega: \left\{ \begin{array}{l}
+	0 \leq x \leq a  \\
+	0 \leq y \leq b  
+\end{array} \right. \]
+\[ Au = -\Delta u \]
+\[ D_A = \left\{ u \in C^2(\Omega), \enspace \left. u \right|_{\partial \Omega} = 0 \right\} \]
+\[ {[u,v]}_A = \Int_{0}^{a} \Int_{0}^{b} -\Delta v(x,y)u(x,y)dxdy \]
+\[ {\| u \|}^2_A = - \Int_{0}^{a} \Int_{0}^{b} \Delta u(x,y)u(x,y)dxdy \]
+\[ \psi_{m,n} = \sin \left( \frac{\pi m x}{a} \right) \sin \left( \frac{\pi n y}{b} \right) \in D_A \]
+\[ \Delta \psi_{m,n} = - \pi^2 \left( \frac{m^2}{a^2} + \frac{n^2}{b^2} \right) \psi (x, y) \]
+\[ {\| u \|}^2_A = \frac{\pi^2 (b^2 m^2 + a^2 n^2)}{4ab} \]
+\[ w_{m,n} = \frac{2}{\pi} \frac{\sqrt{ab}}{\sqrt{b^2 m^2 + a^2 n^2}} \sin \left( \frac{\pi m x}{a} \right) \sin \left( \frac{\pi n y}{b} \right) \]
+\[ (2G\Theta, w_{m,n}) = \frac{16abG\Theta}{\pi^3 m n} \sqrt{\frac{ab}{b^2 m^2 + a^2 n^2}} \]
+\[ \psi(x,y) = \frac{32G\Theta a^2b^2}{\pi^4} \Sum_{m,n=1,3,5...}^{\infty} \frac{\sin \left( \frac{\pi m x}{a} \right) \sin \left( \frac{\pi n y}{b} \right)}{mn (b^2 m^2 + a^2 n^2)} \]
+
+\subsection{Минимизация последовательностей}
+
+$ \Phi(u) $ ограничен снизу на $M$, \quad $\exists d = \underset{u \in M}{\inf} \Phi(u)$
+
+$ {u_n}$ --- минимизирующая, \quad $ \underset{n \rightarrow \infty}{\lim} \Phi(u_n) = d $
+
+Пусть $u_0$ --- обобщенное решение $Au = f$
+
+$ F(u) = {\| u - u_0 \|}_A - {\| u_0 \|}_A $
+
+$ \underset{n \rightarrow \infty}{\lim} F(u_n) = F(u_0) = - {\| u_0 \|}_A $ \\
+
+\textbf{Теор.} Если $A$ положительно определенный оператор в $H$, то для $\forall$ минимизирующей $\{u_n\}$ для $F(u)$:
+\[ \underset{n \rightarrow \infty}{\lim} {\| u_n - u_0 \|}_A = 0 \qquad \Rightarrow {\| u_n - u_0 \|}_A \rightarrow 0 \]
+\[ F(u_n) = {\| u_n - u_0 \|}_A - {\| u_0 \|}_A \rightarrow -{\| u_0 \|}_A \]
+
+Если $u_0 \in H_A$, то теорема верна и для положительного $A$
+
+\subsection{Расширение положительно определенного оператора}
+
+\[ {[u,f]}_H = {[u,u_0]}_A \qquad \forall f \in H \rightarrow \exists! \ u_0 \in H_A \]
+\[ \Rightarrow \text{определен линейный оператор} \ G: D_G = H \rightarrow H_A \supset R_A \qquad u_0 = Gf \]
+\[ \exists \ G^{-1} \ \text{--- расширение} \ A \]
+
+\begin{enumerate}
+	\item Ограниченность
+	\[ \forall u \in H_A: \enspace \left| {[u, Gf]}_A \right| \leq | {(u,f)}_H | \leq {\| f \|}_H \cdot {\| u \|}_H \leq \frac{1}{\gamma} {\| f \|}_H \cdot {\| u \|}_A \]
+	\[ \text{Пусть} \ u = Gf \]
+	\[ {\| Gf \|}_A^2 \leq  \frac{1}{\gamma} {\| f \|}_H \cdot {\| Gf \|}_A \]
+	\[ {\| Gf \|}_A \leq  \frac{1}{\gamma} {\| f \|}_H \]
+	\[ {\| Gf \|}_H \leq  \frac{1}{\gamma} {\| Gf \|}_A \]
+	\[ {\| Gf \|}_H \leq  \frac{1}{\gamma^2} {\| f \|}_H \]
+	\item Положительность
+	\[ {(Gf,h)}_H = {[Gf, Gf]}_A = {\| Gf \|}^2_A \geq 0 \hfill \square \]
+\end{enumerate}
+
+\[ G: \ H_A \rightarrow H_A \ \ \forall f \in H_A \]
+\[ {[Gf,f]}_A = {[f,GF]}_A = \overline{{(f,f)}_H} = {\| f \|}_H \geq 0 \]
+\[ \text{Пусть} \ Gf = 0 \Rightarrow {(u,f)}_H = {[u, Gf]}_A = 0 \ \ \forall u \in H_A \quad \Rightarrow \quad f = 0 \]
+\[ \Rightarrow G^{-1} \ \text{--- расширение} \ A \]
+\[ \forall \tilde{u} \in D_A: \ G^{-1} \tilde{u} \qquad A \tilde{u} \]
+\[ A \tilde{u} = f \ \Rightarrow \ \tilde{u} \ \text{--- доставляет} \ \min F(u) \]
+\[ \tilde{u} = Gf, \qquad A \tilde{u} = f = G^{-1} \tilde{u} \Rightarrow G^{-1} \ \text{--- расширение} \ A \]
+\[ \text{Если $A$ положительно определенный, то и $G^{-1}$ положительно определенный} \]
+
+
+\subsection{Некоторые методы построения мин. последовательности}
+
+\begin{enumerate}
+	\item Процесс Ритца
+	
+	$H$ --- вещественное гильбертово пространство, $A$ --- положительно определенный
+	\[ Au = f \]
+	\[ \underset{u \in H_A}{\min} F(u) = {[u,u]}_A - 2{(u,f)}_H \]
+	Введем координатные функции $ \varphi_1, \varphi_2, ..., \varphi_n, ... $
+	\begin{itemize}
+		\item $ \varphi_i \in H_A $
+		\item $ \forall n \ {\{ \varphi_i \}}^n_{i=1} $ --- линейно независимые
+		\item $ \varphi_1, \varphi_2, ..., \varphi_n, ... $ полно в $H_A$
+	\end{itemize}
+	\[u_n = \Sum_{k=1}^n a_k \varphi_k, \qquad a_k \in \mathbb{R} \]
+	\[ F(u_n) = {\left[\Sum_{j=1}^n a_j \varphi_j, \Sum_{k=1}^n a_k \varphi_k \right]} - 2{\left(\Sum_{k=1}^n a_k \varphi_k, f \right)} = \Sum_{j,k=1}^n a_j a_k {[\varphi_j, \varphi_k]} - 2 \Sum_{k=1}^n a_k {(\varphi_k, f)} \]
+	Необходимое условие: $ \min \frac{\partial F(u_n)}{\partial a_j} = 0, \ j=\overline{1,n} $. Для положительного $A$ является и достаточным условием
+	\[ \frac{\partial F(u_n)}{\partial a_j} = 2 \Sum_{k=1}^n {[\varphi_j, \varphi_k]}_A a_k - 2 {(f, \varphi_j)} = 0, \qquad j=\overline{1,n} \]
+	Получим СЛАУ относительно $ a_1,..., a_n $
+	\[ \Sum_{k=1}^n {[\varphi_j, \varphi_k]}_A a_k = {(f, \varphi_j)} \rightarrow a_1,...,a_n \ \text{--- решение} \]
+	\[ {\left( {[\varphi_k, \varphi_j]}_A \right)}_{k,j=\overline{1,n}} \ \text{--- определитель Грама} \]
+	$ \exists ! $ решение $u_n = \Sum_{k=1}^n a_k \varphi_k $
+	\[ \{ \varphi_n \} \rightarrow \{ w_n \} \qquad \text{ПОНС в норме} \ {\| \cdot \|}_A \]
+	\[ {[w_k, w_j]}_A = \delta_{kj} \quad \Rightarrow \quad a_k = {(f, w_k)}_H = c_k \]
+	\[ u_n = \Sum_{k=1}^n c_k \varphi_k \]
+	\[ {\| u_n \|}^2_A = \Sum_{k=1}^n c_k^2 {(u_n, f)} = \Sum_{k=1}^n c_k^2 \]
+	\[ F(u_n) = {\| u_n \|}^2_A - 2{(u_n, f)}_H = - \Sum_{k=1}^n c_k^2 = - {\| u_n \|}^2_A \]
+	\[ {\| u_n \|}^2_A \leq {\| u_0 \|}^2_A, \qquad {\| u_n \|}^2_A \underset{n \rightarrow \infty}{\rightarrow} {\| u_0 \|}^2_A \]
+	\[ \text{Пусть} \ n>k: \ {\| u_n - u_k \|}^2_A = {\left\lVert \Sum_{i=k+1}^n c_i w_i \right\rVert}^2_A = \Sum_{i=k+1}^n c_i^2 = {\| u_0 \|}^2_A - {\| u_k \|}^2_A \]
+	\[ \forall u \in H_A, \qquad w_1 = \frac{u}{{\| u \|}_A} \]
+	\[ n = 1, \qquad u_1 = c_1 w_1, \quad c_1 = {(f, w_1)}_H \]
+	\[ {\| u_0 \|}^2_A \geq {\| u_1 \|}^2_A = c_1^2 = {({(f, w_1)}_H)}^2 = {({(f, u_1)}_H)}^2 \cdot \frac{1}{{\| u_1 \|}^2_A} \]
+	\[ {\| u_0 \|}^2_A \geq \frac{{({(f, u)}_H)}^2}{{\| u \|}^2_A} \quad \forall u \in H_A \]
+	
+	\item Метод Куранта
+	\[ Au = f, \qquad \Omega \subset \mathbb{R}^m + \ \text{граничные условия} \ \partial \Omega  \]
+	\[ \Phi (u) = F(u) + \underbrace{\Sum_{j=0}^k \Sum_{\alpha_1 + ... + \alpha_n = j} {\left\lVert \frac{\partial^j (Au - f)}{{\partial x_1}^{\alpha_1} \cdot ... \cdot {\partial x_n}^{\alpha_n}} \right\rVert}_H^2}_{\geq 0}, \qquad f \in C^k(\Omega) \]
+	\[ \Phi (u) \geq F(u) \]
+	\[ u_0 = \underset{H_A}{\operatorname{argmin}} \ F(u) \]
+	\[ \{ u_n \} \ \text{--- минимизирует} \ \Phi(u) \]
+	
+	\textbf{Пример}
+	\[ -\Delta u = f, \quad u|_{\partial \Omega} = 0, \quad \Omega \subset \mathbb{R}^2 \]
+	Положим $k = 0$
+	\[ \Phi(u) = {(-\Delta u, u)}_H - 2 {(u, f)}_H + {\| \Delta u + f \|}_H^2 \]
+	\[ \Phi(u) = \Int_\Omega {\left\{ {\left(\frac{\partial u}{\partial x}\right)}^2 + {\left(\frac{\partial u}{\partial y}\right)}^2 - 2uf + {(\Delta u + f)}^2 \right\}} d\Omega \]
+	\[ \{ u_n \} \ \text{--- минимизирующая для } \Phi, \qquad \Int_{\Omega} {(\Delta u_n + f)}^2 d \Omega \rightarrow 0 \]
+	\[ u_n(x, y) - u(x, y) = - \Int_{\Omega} G(x, y; \xi, \eta) (\Delta u_n + f) d \Omega \]
+	\[ | u_n(x, y) - u(x, y) | \leq \sqrt{\Int_{\Omega} G^2(x, y; \xi, \eta) d \xi d \eta} \sqrt{\Int_{\Omega} {(\Delta u + f)}^2 d \Omega } \]
+	\[ | u_n(x, y) - u(x, y) | \leq C \sqrt{\Int_{\Omega} {(\Delta u + f)}^2 d \Omega } \]
+	\[ \{ u_n \} \overset{\Omega}{\rightrightarrows} u(x, y) \]
+	
+	\item Метод наискорейшего спуска
+	\[ Au = f \]
+	\[ m {\| u \|}^2_H \leq {(Au, u)}_H \leq M {\| u \|}^2_H \]
+	\[ F(u) = {(Au, u)}_H - 2{(u,f)}_H \]
+	
+	\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {1}}} $ \quad \forall u_1: \qquad v_1 = Au_1 - f, \qquad u_2 = u_1 - a_1 v_1 $
+	\[ F(u_1 - a_1v_1) = F(u_1) - 2a_1 \Bigl[ {(Au_1, v_1)}_H - {(f,v_1)}_H \Bigr] + a_1^2 {(Av_1, v_1)}_H \]
+	\[ a_1 {(Av_1, v_1)}_H - \Bigl[ {(Au_1, v_1)}_H - {(f,v_1)}_H \Bigr] = 0 \]
+	\[ {(Au_1, v_1)}_H - {(f,v_1)}_H = {(Au_1 - f, v_1)}_H = {(v_1, v_1)}_H = {\| v_1 \|}^2_H \]
+	\[ a_1 = \frac{{\| v_1 \|}^2_H}{{(Av_1, v_1)}_H} \]
+	\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {2}}} $ \quad \forall u_2: \qquad v_2 = Au_2 - f_1, \qquad u_3 = u_2 - a_2 v_2 $
+	\[ ... \]
+	\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {n}}} $ \quad {\| u_{n+1} - u_0 \|}_A \leq {\| u_1 - u_0 \|}_A {\Bigl(\frac{M-m}{M+m}\Bigr)}^n $
+	
+\end{enumerate}
+
+\subsection{Краевые задачи для ОДУ}
+
+\[ Lu = - \frac{d}{dx} \left( \Phi(x) \frac{du}{dx} \right) + q(x)u'(x) \]
+\[ Lu = f(x), \qquad x_1 < x \leq x_2 \]
+\[ \left\{ \begin{array}{l}
+	\alpha_1 u'(x_1) + \beta_1 u(x_1) = 0 \\
+	\alpha_2 u'(x_2) + \beta_2 u(x_2) = 0
+\end{array} \right. \]
+\[ D_L = \{ C^2[x_1, x_2] + \ \text{граничные условия} \} \]
+Пусть
+\begin{itemize}
+	\item $ p(x) \geq 0, \enspace q(x) \geq 0, \quad x \in [x_1, x_2] $ \\ ($p$ может обращаться в 0 в некоторых точках) $ p(x) \geq p_0 > 0 $
+	\item $ p \in C^1[x_1, x_2], q \in C[x_1, x_2] $
+	\item $ \Int_{x_1}^{x_2} \frac{dx}{p(x)} $ сходится на $ [x_1, x_2] $
+	\item $ \alpha_i^2 + \beta_i^2 > 0, \quad i = 1, 2 $
+\end{itemize}
+\[ (Lu, v) = \Int_{x_1}^{x_2} \left[ p(x) \frac{du}{dx} \frac{dv}{dx} + q(x) u(x) v(x) \right] dx + \frac{\beta_1}{\alpha_1} p(x_1) u(x_1) v(x_1) + \frac{\beta_2}{\alpha_2} p(x_2) u(x_2) v(x_2) \]
+\[ (Lu, u) = \Int_{x_1}^{x_2} \left[ p(x) {\left(\frac{du}{dx}\right)}^2 + q(x) u^2(x) \right] dx + \frac{\beta_1}{\alpha_1} p(x_1) u^2(x_1) + \frac{\beta_2}{\alpha_2} p(x_2) u^2(x_2)  \]
+\[  \blacktriangleright \alpha_1 = \alpha_2 = 0 \]
+\[ (Lu, u) \geq p_0 \Int_{x_1}^{x_2} \left[ p(x) {\left(\frac{du}{dx}\right)}^2 \right] dx = p_0 {\| u' \|}^2_H \geq \gamma^2 {\| u \|}^2_H, \qquad \gamma = \frac{\sqrt{2p_0}}{x_2 - x_1} \]
+\[ u(x_1)=0 \ \rightarrow \ u(x) = \Int_{x_1}^{x} u'(t) dt \]
+\[ u^2(x) \leq (x_2 - x_1) {\| u' \|}^2_H \]
+\[ \Int_{x_1}^{x_2} (...) \ dx \quad \Rightarrow \quad {\| u \|}^2_H \leq \frac{x_2 - x_1}{2} {\| u' \|}^2_H \]
+\[ \blacktriangleright \beta_1 > 0 \]
+\[ (Lu, u) \geq \frac{B}{C} {\| u \|}^2_H \]
+\[ C = \max\left\{2A(x_2 -x_1), 2(x_2 - x_1)\right\}, \quad B = \min\left\{\frac{\beta_1}{\alpha_1} p(x_1), 1\right\} \]
+\begin{multline*}
+	F(u) = {(Lu, u)}_H - 2{(u,f)}_H = \frac{\beta_1}{\alpha_1} p(x_1) u^2(x_1) + \frac{\beta_2}{\alpha_2} p(x_2) u^2(x_2) + \\ + \Int_{x_1}^{x_2} \left[ p(x) {u'(x)}^2 + q(x) u^2(x) - 2f(x)u(x) \right] dx
+\end{multline*}
+\[ u_n(x) \underset{{\| \cdot \|}_A}{\rightarrow} u_0(x) \]
+\[ \underset{n \rightarrow \infty}{\lim} {\| u_n - u_0 \|}_A = 0, \qquad {\| u_n - u_m \|}_A^2 \rightarrow 0 \]
+\[ \underset{n,m \rightarrow \infty}{\lim} \left[ u_n(x) - u_m(x) \right] = 0 \]
+\[ \underset{n,m \rightarrow \infty}{\lim} \Int_{x_1}^{x_2} {\left[ {u'}_n(x) - {u'}_m(x) \right]}^2 dx = 0 \]
+\[ u_n(x) - u_m(x) = u_n(x_1) - u_m(x_1) - \Int_{x_1}^{x_2} {\left[ {u'}_n(t) - {u'}_m(t) \right]}^2 dt \]
+Используя неравенство Буняковского и $ {a+b}^2 \leq a^2 + b^2 $
+\[ {| u_n(x) - u_m(x) |}^2 \leq 2 {(u_n(x_1) - u_m(x_1))}^2 + 2(x_2 - x_1) \Int_{x_1}^{x_2} {\left[ {u'}_n(t) - {u'}_m(t) \right]}^2 dt \]
+\[ u_n(x) \rightrightarrows u(x) \]
+\[ {u'}_n \overset{\text{ср}}{\rightarrow} u'(x) \]
+
+\newpage
