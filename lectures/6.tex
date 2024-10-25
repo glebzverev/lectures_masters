@@ -1,0 +1,139 @@
+\section{Лекция 6}
+
+\subsection{Применение энергетического метода для краевых задач}
+
+\textbf{Пример 1}
+
+\[ Lu =\Sum_{k=0}^m (-1)^k \frac{d^k}{{dx}^k} \left[ p_k(x) \frac{d^k u}{{dx}^k} \right], \qquad Lu = f \]
+\[ \left\{ \begin{array}{l}
+	u(x_1) = u'(x_1) = ... = u^{(m-1)}(x_1) = 0 \\ 
+	u(x_2) = u'(x_2) = ... = u^{(m-1)}(x_2) = 0
+\end{array} \right. \]
+\[ p_k(x) \geq 0, \quad x \in [x_1, x_2], \qquad f \in L_2(x_1, x_2) \]
+\[ D_L = \left\{ u \in C^{2m}[x_1, x_2] + \ \text{граничные условия} \right\} \]
+\[ {(Lu, u)}_H = \Sum_{k=0}^{m} \Int_{x_1}^{x_2} p_k (x) {\left(\frac{d^k u }{{dx}^k }\right)}^2 dx \geq \Int_{x_1}^{x_2} p_m (x) {\left(\frac{d^m u }{{dx}^m }\right)}^2 dx \geq p_0 \Int_{x_1}^{x_2} {\left(\frac{d^m u }{{dx}^m }\right)}^2 dx = p_0 {\|u^{(m)}\|}^2_H \]
+
+Так как выполняется $ u(x_1) = u'(x_1) = ... = u^{(m-1)}(x_1) = 0 $, то
+\[ {\| u \|}_H^2 \leq \frac{{(x_2-x_1)}^2}{2} {\| u' \|}_H^2 \]
+\[ {\| u \|}_H \leq \frac{x_2 - x_1}{\sqrt{2}} {\| u' \|}_H, \ \ ..., \ \ {\| u^{(l-1)} \|}_H \leq \frac{x_2 - x_1}{\sqrt{2}} {\| u^{(l)} \|}_H, \qquad l=\overline{1,m} \]
+\[ {\| u^{(m)} \|}_H^2 \geq {\left(\frac{\sqrt{2}}{x_2 - x_1}\right)}^m {\| u \|}_H^2 \]
+\[ (L u_m ) \geq \gamma^2 {\|u\|}^2_H, \quad \gamma = \sqrt{p_0} {\left(\frac{\sqrt{2}}{x_2-x_1}\right)}^m \qquad \Rightarrow \qquad L \ \text{--- положительно определенный} \]
+\[ {\|u\|}_A \leq \sqrt{p_0} \ {\| u^{(m)} \|}_H, \quad \exists \ \{ u_n (x) \}\]
+\[ \underset{n \rightarrow \infty}{\lim} {\| u_n - u_0 \|} = 0, \quad u_0 \ \textrm{--- точное решение} \]
+\[ {\|u_n - u_k \|}_A \leq {\|u_n - u_0\|}_A + {\| u_k - u_0\|}_A \rightarrow 0 \]
+\[ u^{(l)}_n (x_1) = u^{(l)}_k (x_1) = 0, \quad l = \overline{0, m-1} \]
+\[ u^{(m - 1)}_n (x) - u^{(m - 1)}_k (x) = \Int_{x_1}^{x} \left( u^{(m)}_n (t) - u^{(m)}_k (t) \right) \ dt \]
+\begin{multline*}
+	\left| u^{(m - 1)}_n (x) - u^{(m - 1)}_k (x) \right| \overset{\text{КБ}}{\leq} (x - x_1) \Int_{x_1}^{x} {\left( u^{(m)}_n (t) - u^{(m)}_k (t) \right)}^2 \ dt \leq \\
+	\leq (x_2 - x_1) \Int_{x_1}^{x_2} {\left( u^{(m)}_n (t) - u^{(m)}_k (t) \right)}^2 \ dt \leq (x_2 - x_1) {\left\| u^{(m)}_n - u^{(m)}_k \right\|}_H^2
+\end{multline*}
+
+\textbf{Пример 2} (задача об изгибе балки)
+\[ L\omega = \frac{d^2}{{dx}^2} \left[E I(x) \frac{d^2 \omega }{{dx}^2}\right] + K\omega = q(x)\]
+
+$ \omega $ --- прогиб балки
+
+$ E $ --- модуль Юнга
+
+$ I(x) $ --- момент инерции сечения
+
+$ q(x) $ --- интенсивность нагрузки на балку
+
+$ K $ --- коэффициент податливости основания
+\[ \omega (0) = \omega (l) = 0 \]
+\[ \omega'(0) = \omega'(l) = 0 \]
+
+Из предыдущей задачи известно, что $L$ положительно определен
+\[ F(\omega) = \Int_{0}^{l} \left(E I(x) {\omega''}^2 + K\omega^2 - 2q(x) \omega \right) dx = (L\omega , \omega) -2 (\omega, q)\]
+
+Воспользуемся методом Ритца
+\[ {\{\varphi_n (x)\}}^{\infty}_{n=1}, \quad \varphi_n (x) = {(x-l)}^2 x^{n+1}, \quad \text{полная система в} \ H_A \]
+\[ \omega_n = \Sum_{k=1}^{n} a_k \varphi_k (x) = {(x-l)}^2 \Sum_{k=1}^{n} a_k x^{k+1} \]
+\[ \Sum_{k=1}^{n} a_k A_{ik} = b_{ij}, \quad i=\overline{1, n} \]
+\[ b_j = {(q, \varphi_j)}_H = \Int_{0}^{l } q(x) {(x-l)}^2 x^{j+1} dx \]
+\[ A_{ik} = {(L \varphi_i, \varphi_k)}_H = \Int_{0}^{l} \left(E I(x) \frac{d^2 \varphi_i}{{dx}^2} \frac{d^2 \varphi_k}{{dx}^2} + k\varphi_i \varphi_k \right) dx \]
+\[ \omega_n(x) \underset{[0;l]}{\rightrightarrows} w_0(x), \qquad {\omega'}_n(x) \underset{[0;l]}{\rightrightarrows} {w'}_0(x), \qquad {\omega''}_n(x) \overset{\text{ср}}{\rightrightarrows} {w''}_0(x), \]
+\[ \omega(0) = 0, \qquad \omega''(l) = 0, \qquad \omega' (0) = 0 \]
+\[ {\left.{\frac{d}{dx} \left(E I(x) \frac{d^2 \omega }{d x^2}\right)}\right|}^{x=l}_{x=0} = 0 \]
+
+\textbf{Пример 3} (краевая задача для систем ОДУ)
+\[ - \Sum_{k=1}^{s} \left[ \frac{d}{dx} \left( p_{jk}(x) \frac{du_k (x)}{dx} \right) - q_{jk}(x) u_k (x) \right] = f_j(x) \]
+\[ u_j(x_1) = u_j(x_2) = 0 \]
+\[ u(x) = {\bigl(u_1(x), ..., u_j(x)\bigr)}^T, \qquad f(x) = {\bigl(f_1(x), ..., f_j(x)\bigr)}^T \]
+\[ {\bigl( p_{jk}(x) \bigr)}_{j,k=1} \subset P(x), \qquad {\bigl( q_{jk}(x) \bigr)}_{j,k=1} \subset Q(x) \]
+\[ - \frac{d}{dx} \left[P(x) \frac{du}{dx} \right] + Q(x) u(x) = f(x) \]
+\[ u(x_1) = u (x_2) = 0 \]
+\[ p_{jk}(x), \ q_{jk}(x), \ {p'}_{jk} (x) \in C[x_1, x_2] \]
+\[ {(u, v)}_{H= L_2(x_1, x_2)} = \Int_{x_1}^{x_2} u (x) v(x) dx = \Int_{x_1}^{x_2} \Sum_{k=1}^{s} u_k(x) v_k (x) dx \]
+\[ D_A = \left\{ u = {\bigl(u_1, ..., u_j\bigr)}^T, \ u_i(x) \in C[x_1, x_2], \ u_i(x_1) = u_i(x_2) = 0 \right\} \]
+
+\textbf{Теор.} $P(x), Q(x)$ симметричны на $ x \in [x_1, x_2] \quad \Rightarrow \quad A $ симметричный
+
+\underline{Док-во.}
+\begin{multline*}
+	{(Au, v)}_H = - \Int_{x_1}^{x_2} v(x) \frac{d}{dx} \left[P(x) \frac{du}{dx}\right] dx \ + \Int_{x_1}^{x_2} v(x)  Q(x) u(x) dx = \\
+	= \Int_{x_1}^{x_2} \left[P \frac{du }{dx } \frac{dv}{dx} + v(x) Q(x) u(x) \right] dx = {(u, Av)}_H \quad \Rightarrow \quad \text{симметр.}
+\end{multline*}
+\[ Q u v = \Sum_{j,k=1}^{s } q_{jk} u_k v_j = \Sum_{i,j =1}^{s} q_{kj} v_j u_k \hfill \square \]
+
+\textbf{Теор.} $P(x), Q(x)$ симметричны на $[x_1, x_2]$, $P(x)$ --- полож. опр.,  $Q(x)$ неотр. на $[x_1, x_2] \Rightarrow A $ положительно определен
+
+\underline{Док-во.}
+\[ P(x) \textrm{ пол. опр } \forall x \Rightarrow \textrm{ пусть } \lambda_1(x) >0  \]
+\[ \exists \ \tilde{\lambda} > 0 = const, \quad \lambda_1(x) > \tilde{\lambda} > 0, \quad  x \in [x_1, x_2] \]
+\[ \forall \ t = {\bigl(t_1, ..., t_s\bigr)}^T \]
+\[ P(x) t \cdot t = \Sum_{j, k=1}^{s } P_{jk}(x)t_j t_k \geq  \lambda_1(x) \Sum_{k=1}^{s } t_k^2 \geq \tilde{\lambda } \Sum_{k=1}^{s } t^2_k \]
+\[ Q(x) t\cdot t = \Sum_{j, k=1}^{s }q_{jk} t_j t_k \geq 0 \]
+\[ {(Au, u)}_H = \Int_{x_1}^{x_2} \left(P \frac{du }{dx } \cdot \frac{du }{dx} + Qu \cdot u \right) dx \geq \tilde{\lambda } \Int_{x_1}^{x_2} \Sum_{k=1}^s {\left(\frac{du_k}{dx}\right)}^2 dx \]
+\[ (Au, u)_H \geq \frac{2 \tilde{\lambda}}{{(x_2 - x_1)}^2} \Int_{x_1}^{x_2} \left(\Sum_{k=1}^{s } u_k^2\right) dx = \frac{2 \tilde{\lambda}}{{(x_2 - x_1)}^2} {\|u\|}^2_H \]
+\[ {(Au, u)}_H \geq \gamma^2 {\|u\|}^2_H \hfill \square \]
+
+
+\[ \left. \begin{array}{l}
+	u'(x_1) - M_1 u(x_1) = 0 \\
+	u'(x_2) - M_2 u(x_2) = 0
+\end{array} \right. \quad \Rightarrow \quad A \ \text{--- полож. опр.}, \quad M_1, M_2 \ \text{--- ?? неотриц.} \]
+
+\subsection{Основные краевые задачи для ур-я Пуассона}
+
+\[ -\Delta u = f(p) \qquad \text{в} \ \ \Omega \subset \mathbb{R}^m \label{6.1} \tag{6.1} \]
+
+$ \blacktriangleright $ \underline{задача Дирихле}
+\[ u|_{\partial \Omega} = 0 \label{6.2} \tag{6.2}  \]
+\[ A u = - \Delta u = - \Sum_{k=1}^{m } \frac{\partial^2 u }{\partial {x_k}^2} \]
+\[ D_A = \left\{ u \in C^2 \left(\overline{\Omega}\right), \quad u |_{\partial \Omega} = 0 \right\} \]
+\[ H = L_2 (\Omega) \]
+\[ {(-\Delta u, u )}_H = \Int_{\Omega}^{} \Sum_{i=1}^{n} {\left(\frac{\partial u }{\partial x_i}\right)}^2 d \Omega - \cancelto{0}{\int\limits_{S }^{} u \frac{\partial u }{\partial n } dS} = \Int_{\Omega}^{} {(\operatorname{grad} u)}^2 d\Omega \geq 0 \label{6.3} \tag{6.3} \]
+\[ {(Au, u)}_H = 0 \Leftrightarrow u = const = 0 \qquad \Rightarrow \qquad A \ \text{--- положительный} \]
+\[ \Leftrightarrow \min F(u) \]
+\[ F(u) = {(-\Delta u, u )}_H - 2 {(u, f)}_H \label{6.4} \tag{6.4} \]
+\[ F(u) = \Int_{\Omega }^{} {((\operatorname{grad} u )}^2 - 2uf) \ d\Omega \label{6.5} \tag{6.5} \]
+
+$ \blacktriangleright $ \underline{задача Робена}
+\[ {\left. \left[\frac{\partial u }{\partial n} + \sigma (P) u \right] \right|}_{\partial \Omega} = 0 \label{6.6} \tag{6.6} \]
+\[ {(- \Delta u, u)}_H = \Int_{\Omega}^{} {(\operatorname{grad} u)}^2 d\Omega + \Int_{\partial \Omega} \sigma u^2 dS \geq 0, \qquad \sigma(P) \not\equiv 0, \ \sigma(P) \geq 0 \]
+\[ {(-\Delta u, u)}_H =0 \Leftrightarrow u = const = c, \qquad \Int_{ \partial \Omega}^{} \sigma c^2 dS = 0 \Rightarrow c = 0 \Rightarrow u = 0\]
+\[ F(u) = \Int_{\Omega}^{} \left({(\operatorname{grad} u)}^2 - 2uf \right) d\Omega + \Int_{\partial \Omega} \sigma u^2 dS \label{6.7} \tag{6.7} \]
+
+$ \blacktriangleright $ \underline{задача Неймана}
+\[ {\left. \frac{\partial u }{\partial n} \right|}_{\partial \Omega } = 0 \label{6.8} \tag{6.8} \]
+
+Аналогично \eqref{6.3}
+\[ {(-\Delta u, u )}_H = - \cancelto{0}{\Int_{\partial \Omega}^{} u  \frac{\partial u}{\partial n} dS} + \Int_{\Omega}^{} {(\operatorname{grad} u )}^2 d\Omega \geq 0 \]
+Но, этого недостаточно, например:
+\[ u \equiv 1, \quad {(-\Delta u, u)}_H = 0 \]
+Интегрируем $\Int_{\Omega} (...) d \Omega $ уравнение \eqref{6.1}:
+\[ - \Int_{\Omega} \Delta u d \Omega = \Int_{\Omega} f d \Omega \]
+\eqref{3.6} при $v = 1$
+\[ \Int_{\Omega }^{} \Delta u \, d\Omega = \Int_{\partial \overline{\Omega}}^{} \frac{\partial u }{\partial n } dS = 0 \]
+\[ \Int_{\Omega} f \, d\Omega = 0 \quad \text{--- условие разрешимости} \]
+\[ \Int_{\Omega} u(P) \, d\Omega = 0 \label{6.9} \tag{6.9} \]
+\[ D_A = \left\{ u \in C^2 \left(\overline{\Omega}\right), \quad u: \eqref{6.8}, \eqref{6.9} \right\} \]
+
+С учетом условия \eqref{6.9}
+\[ {(-\Delta u, u)}_H =0 \Leftrightarrow \operatorname{grad} u = 0 \Rightarrow u = c \overset{\eqref{6.9}}{\Rightarrow} u = 0 \qquad \Rightarrow \qquad A \ \text{--- положительный} \]
+\[ \Leftrightarrow \min F(u) \]
+\[ F(u) = {(-\Delta u, u )}_H - 2 {(u, f)}_H \]
+\[ F(u) = \Int_{\Omega }^{} {((\operatorname{grad} u )}^2 - 2uf) \ d\Omega \]
+
+\newpage
