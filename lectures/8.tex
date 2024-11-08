@@ -1,0 +1,288 @@
+\section{Лекция 8}
+
+\raisebox{.5pt}{\textcircled{\raisebox{-.9pt} {2}}} \underline{задача Робена}
+
+\[ \left\{ \begin{array}{l}
+	- \Delta u = f \qquad \text{в} \ \Omega \\
+	{\left. \cfrac{\partial u }{\partial n} \right|}_{\partial \Omega} = 0
+\end{array} \right. \]
+
+% Задача Робена (смешанные граничные условия): на границе задан градиент функции в нормальном направлении.
+
+\subsection{Неравенство Пуанкаре}
+
+% Неравенство Пуанкаре связывает норму функции с нормой её градиента, с дополнительным членом, зависящим от среднего значения функции.
+% Это фундаментальное неравенство в теории функциональных пространств.
+
+\[ (x_1, y_1), (x_2, y_2) \in \Omega \]
+
+% Для любых двух точек в области $\Omega$ верно следующее неравенство:
+\[ \Int_{\Omega}^{} u^2 d \Omega \leq A \Int_{\Omega}^{} \left[(\operatorname{grad} u)^2\right] d\Omega + B\left(\Int_{\Omega}^{}u d\Omega\right)^2\]
+
+где $A$ и $B$ --- константы, зависящие от формы области $\Omega$.
+
+% Рассмотрим разность значений функции в двух точках:
+\begin{multline*}
+	u^2 (x_2, y_2) + u^2(x_1, y_1) - 2u(x_2, y_2) \, u(x_1, y_1) = \\
+	= {\left( \Int_{x_1}^{x_2} \frac{\partial u}{\partial x} (x, y_1) dx \right)}^2 + {\left( \Int_{y_1}^{y_2} \frac{\partial u}{\partial y}(x_2, y) dy \right)}^2 + 2\Int_{x_1}^{x_2} \frac{\partial u}{\partial x} (x, y_1)dx \Int_{y_1}^{y_2} \frac{\partial u}{\partial y} (x_2, y) dy \leq \\
+	\leq 2 {\left( \Int_{x_1}^{x_2} \frac{\partial u}{\partial x} (x, y_1) dx \right)}^2 + 2 {\left( \Int_{y_1}^{y_2} \frac{\partial u}{\partial y}(x_2, y) dy \right)}^2 \leq \\
+	\leq 2 \left\{ |x_2-x_1| \Int_{0}^{a} {\left( \frac{\partial u}{\partial x}(x, y_1) \right)}^2 dx + |y_2-y_1| \Int_{0}^{b} {\left( \frac{\partial u}{\partial y}(x_2, y) \right)}^2 dy \right\}
+\end{multline*}
+
+% Проинтегрируем это неравенство по всем четырём координатам:
+Проинтегрируем $\iiiint (...) dx_1 dy_1 dx_2 dy_2$:
+
+\[ \iiiint u^2 (x_2, y_2) dx_1 dy_1 dx_2 dy_2 = ab \Int_{\Omega}^{} u^2 d\Omega \]
+
+\[ \iiiint u(x_2, y_2) u(x_1, y_1) dx_1 dy_1 dx_2 dy_2 = {\left( \Int_{\Omega}^{} u d \Omega \right)}^2 \]
+
+После интегрирования получаем:
+\[ 2 ab \Int_{\Omega}^{} u^2 d\Omega -2 {\left(\Int_{\Omega}^{} u d\Omega \right)}^2 \leq ab \left\{a^2 \Int_{\Omega}^{} {\left(\frac{\partial u}{\partial x}\right)}^2 d\Omega + b^2 \Int_{\Omega}^{} {\left(\frac{\partial u}{\partial y}\right)}^2 d\Omega \right\} \]
+
+Полагая $A = \max \{a^2, b^2\}$ и $B = \frac{1}{ab}$, приходим к неравенству Пуанкаре:
+
+\[ \Int_{\Omega} u^2 d\Omega \leq A \Int_{\Omega} \left( {\left(\frac{\partial u }{\partial x}\right)}^2 + {\left(\frac{\partial u }{\partial y}\right)}^2 \right) d\Omega + B {\left(\Int_{\Omega} u d\Omega \right)}^2 \]
+
+% Для задачи Робена (Неймана) с дополнительным условием нулевого среднего:
+Для задачи Робена с условием нулевого среднего значения:
+\[ D_N = D(A_N) = \left\{ u \in C^2(\overline{\Omega}), \quad {\left. \frac{\partial u}{\partial n} \right|}_{\partial  \Omega} = 0, \quad \Int_{\Omega}^{} u d\Omega = 0 \right\} \]
+
+% Тогда нулевой член исчезает и получаем положительную определённость:
+\[ {\|u\|}^2_H \leq A \Int_{\Omega}^{} \Sum_{k=1}^{m} {\left(\frac{\partial u}{\partial x_k}\right)}^2 d\Omega = \widetilde{A} \ {(A_Nu, u)}_H \]
+
+что означает положительную определённость оператора:
+\[ (A_Nu, u) \geq \gamma^2 {\|u\|}^2_H, \qquad \gamma = \frac{1}{\sqrt{\widetilde{A}}} \]
+
+% Далее используем обобщённую формулировку в энергетической норме:
+Далее обозначим через $A$ оператор $A_N$ или $A_D$ и определим энергетическое скалярное произведение:
+\[ {[u, v]}_A = \Int_{\Omega}^{} \operatorname{grad} u \cdot \operatorname{grad} v \ d\Omega \]
+
+\[ {\|u\|}_A = \Int_{\Omega}^{} (\operatorname{grad} u )^2 d \Omega \]
+
+% Определение обобщённой производной:
+\textbf{Определение.} Пусть $u, v \in L_2 (\Omega)$ и $\psi \in C^{\infty}_0 (\Omega)$ --- гладкая функция с компактным носителем.
+
+Если для всех таких $\psi$ справедливо тождество
+\[ \Int_{\Omega}^{} u \frac{\partial \psi}{\partial x_j} d\Omega = -\Int_{\Omega} v_j \psi \, d \Omega \]
+
+то функция $v_j \in L_2(\Omega)$ называется \textbf{обобщённой частной производной} функции $u$ и обозначается $v_j = \frac{\partial u}{\partial x_j}$ в смысле распределений.
+
+% Для функций из энергетического пространства $H_{A_D}$:
+Пусть $u \in H_{A_D}$ --- элемент пространства энергетических функций. Тогда существует последовательность $\{u_n\} \subset D_{A_{D}}$ такая, что:
+
+\[ {\|u_n - u\|}_H \underset{n \rightarrow \infty}{\rightarrow} 0 \]
+
+\[ {\|u_n - u\|}_A \underset{n \rightarrow \infty}{\rightarrow} 0 \]
+
+% То есть градиенты функций сходятся:
+\[ \Int_{\Omega} {(\operatorname{grad} u_n - \operatorname{grad} u_l)}^2 d\Omega = \Sum_{k=1}^{m} \Int_{\Omega} {\left( \frac{\partial  u_n}{\partial  x_k} - \frac{\partial u_l}{\partial x_k} \right)}^2 d \Omega \rightarrow 0 \]
+
+% Значит существуют пределы:
+Следовательно, существуют пределы компонент градиента:
+\[ \exists \, v_k \in L_2(\Omega): \qquad {\left\| \frac{\partial u_n}{\partial x_k} - v_k \right\|}_H \rightarrow 0 \]
+
+% Докажем, что эти пределы --- это обобщённые производные:
+\textbf{Утверждение.} $v_k = \frac{\partial u}{\partial x_k}$ в смысле обобщённых производных.
+
+\textit{Доказательство:} Пусть $ \psi(P) \in C^{\infty}_{0} ( \overline{\Omega})$ и $ \{u_n\} \subset C^2(\overline{\Omega})$.
+
+По формуле интегрирования по частям:
+\[ \Int_{\Omega}^{} u_n \frac{\partial \psi}{\partial x_k} d\Omega = - \Int_{\Omega}^{} \psi \frac{\partial u_n}{\partial x_k} d\Omega \]
+
+Переходя к пределу при $n \to \infty$:
+\[ {\left( u_n, \frac{\partial \psi}{\partial  x_k} \right)}_H = - {\left( \frac{\partial  u_n}{\partial x_k}, \psi \right)}_H \qquad \rightarrow \qquad {\left( u, \frac{\partial \psi}{\partial  x_k} \right)}_H = -(\psi, v_k)_H \]
+
+что и означает, что $v_k$ --- обобщённая производная функции $u$. $\square$
+
+\subsection{Неоднородные краевые условия}
+
+% Рассмотрим задачу Дирихле с неоднородными граничными условиями:
+Рассмотрим краевую задачу:
+
+\begin{equation}
+	\Delta u = 0 \label{8.1} \tag{8.1}
+\end{equation}
+
+\begin{equation}
+	u|_{\partial \Omega} = \varphi \label{8.2} \tag{8.2}
+\end{equation}
+
+% Идея: свести к однородным граничным условиям через вспомогательную функцию:
+\textbf{Идея решения:} Преобразуем задачу к однородным граничным условиям, используя вспомогательную функцию.
+
+Предположим, что существует функция $\psi(P)$ со следующими свойствами:
+
+\[ \bullet \ \psi \in C(\overline{\Omega}) \]
+
+\[ \bullet \ {\left. \psi (P) \right|}_{\partial \Omega} = \varphi(P) \]
+
+\[ \bullet \ \frac{\partial  \psi}{\partial  x_k} \in C(\Omega), \ k=\overline{1,m} \]
+
+Такая функция $\psi$ продолжает граничные данные $\varphi$ в область $\Omega$.
+
+% Функционал энергии:
+Рассмотрим функционал энергии (энергетический функционал):
+
+\begin{equation}
+	\Phi(u) = \Int_{\Omega}^{} (\operatorname{grad} u)^2 d\Omega \label{8.3} \tag{8.3}
+\end{equation}
+
+определённый на пространстве допустимых функций:
+\[ D_{\Phi} = \{u: u|_{\partial \Omega} = \varphi(P)\} \]
+
+Решение $u_0(P)$ исходной задачи доставляет минимум этому функционалу.
+
+% Вариационная формулировка:
+\textbf{Вариационный принцип:} Пусть функция $u_0(P)$ реализует $\min \Phi(u)$. Рассмотрим вариации:
+
+\[ u_0 + t \eta \in D_{\Phi}, \quad \forall t \in \mathbb{R} \]
+
+где $\eta$ --- произвольная функция, обращающаяся в нуль на границе:
+\[ \eta|_{\partial  \Omega } = 0 \]
+
+Так как $\Phi(u_0 + t \eta)$ достигает минимума при $t=0$, то:
+
+\begin{multline*}
+	{\left. \left[ \frac{d}{dt} \Phi(u_0+t \eta) \right] \right|}_{t=0} = {\left. \left[ \frac{d}{dt} \Int_{\Omega}^{} \Sum_{k=1}^{m} {\left(\frac{\partial (u_0 + t\eta)}{\partial x_k}\right)}^2 d\Omega \right] \right|}_{t=0} = \\
+	= {\left. \left[ \frac{d}{dt} \Int_{\Omega}^{} \Sum_{k=1}^{m} \left({\left(\frac{\partial u_0}{\partial  x_k}\right)}^2 + 2\frac{\partial u_0}{\partial x_k} \cdot t \frac{\partial \eta}{\partial x_k} + t^2 {\left(\frac{\partial \eta}{\partial x_k}\right)}^2 \right) d\Omega \right] \right|}_{t=0} = \\
+	= 2 \Int_{\Omega}^{} \Sum_{k=1}^{m} \frac{\partial u_0}{\partial x_k} \frac{\partial \eta}{\partial x_k} d\Omega = 2 \Int_{\Omega} \operatorname{grad} u_0 \cdot \operatorname{grad} \eta \, d\Omega = 0
+\end{multline*}
+
+% Применяем формулу Грина:
+Применяя формулу Грина и используя граничное условие $\eta|_{\partial \Omega} = 0$:
+
+\[ \Int_{\Omega}^{} \eta \, \Delta u_0 \, d\Omega = 0 \]
+
+Так как множество функций $\eta$ с указанным свойством плотно в $L_2(\Omega)$, то:
+
+\[ \Delta u_0 = 0 \text{ п.в. в } \Omega \]
+
+% Переход к функции с нулевыми граничными условиями:
+\textbf{Переход к однородным условиям:} Положим $u = \psi + v$, где $v|_{\partial \Omega} = 0$.
+
+Тогда исходный функционал принимает вид:
+
+\begin{multline*}
+	\Phi(u) = \Phi (\psi + v) = \Int_{\Omega}^{} {(\operatorname{grad} (\psi + v) )}^2 d\Omega = \\
+	= \Int_{\Omega}^{} (\operatorname{grad} \psi)^2 d\Omega + 2 \Int_{\Omega}^{} \operatorname{grad} \psi \cdot \operatorname{grad} v d \Omega + \Int_{\Omega}^{} (\operatorname{grad} v)^2 d \Omega
+\end{multline*}
+
+% Переформулировка через квадратичный функционал:
+Переписывая через новый функционал:
+
+\[ F(v) = {\|v\|}^2_{A_D} - 2 \Int_{\Omega}^{} \operatorname{grad} v \cdot \operatorname{grad} \psi \ d\Omega, \qquad v \in H_D = H_{A_D}\]
+
+где $H_D$ --- энергетическое пространство Дирихле (функции, обращающиеся в нуль на границе).
+
+% Линейный функционал, определённый правой частью:
+Рассмотрим линейный функционал:
+
+\[ lv = \Int_{\Omega}^{} \operatorname{grad} v \cdot \operatorname{grad} \psi \ d\Omega \]
+
+% Проверим его ограниченность:
+По неравенству Коши--Буняковского:
+
+\[ |lv| \leq \sqrt{\Int_{\Omega}^{} {(\operatorname{grad} \psi)}^2 d\Omega} \cdot \sqrt{\Int_{\Omega}^{} {(\operatorname{grad} v)}^2 d\Omega} = c \, {\|v\|}_{A_D} \]
+
+Следовательно, $l$ --- ограниченный линейный функционал.
+
+% Существование и единственность решения:
+По теореме Рисса об ограниченных функционалах в гильбертовых пространствах, существует единственное решение вариационной задачи, что гарантирует существование и единственность обобщённого решения исходной краевой задачи.
+
+\textbf{Вывод:} Для каждой функции $\varphi \in H^{1/2}(\partial \Omega)$ существует единственное обобщённое решение задачи Дирихле
+\[ u \in H_D(\Omega) \]
+
+\subsection{Уравнения с переменными коэффициентами}
+
+% Рассмотрим общий случай эллиптического оператора:
+Рассмотрим общую краевую задачу для эллиптического оператора с переменными коэффициентами:
+
+\begin{equation}
+	Lu = - \Sum_{j,k=1}^{m} \frac{\partial }{\partial x_j} \left(A_{jk}(P) \frac{\partial u}{\partial x_k}\right) + C(P) u = f, \quad \Omega \in \mathbb{R}^m \label{8.5} \tag{8.5}
+\end{equation}
+
+% Три типа краевых условий:
+Краевые условия одного из трёх типов:
+
+\begin{equation}
+	u|_{\partial \Omega} = 0 \quad \text{(Дирихле)} \label{8.6} \tag{8.6}
+\end{equation}
+
+\begin{equation}
+	{\left. \left[N(u) + \sigma (P) u \right] \right|}_{\partial \Omega} = 0 \quad \text{(Робен)} \label{8.7} \tag{8.7}
+\end{equation}
+
+\begin{equation}
+	{\left. N(u) \right|}_{\partial \Omega} = 0 \quad \text{(Неймана)} \label{8.8} \tag{8.8}
+\end{equation}
+
+где $N(u) = \Sum_{j,k=1}^{m} A_{jk} \frac{\partial u}{\partial x_k} \cos(\mathbf{n}, x_j)$ --- нормальная производная.
+
+% Формула Грина для общего оператора:
+\textbf{Формула Грина:}
+
+\begin{equation}
+	\Int_{\Omega}^{} \left(v Lu - uLv\right) d\Omega = - \Int_{\partial \Omega}^{} \left(v N(u) - u N(v)\right) dS \label{8.9} \tag{8.9}
+\end{equation}
+
+% Проверка симметричности при разных граничных условиях:
+\textbf{Проверка симметричности оператора:}
+
+При условиях \eqref{8.6} (Дирихле) и \eqref{8.8} (Неймана) поверхностный интеграл в \eqref{8.9} обращается в нуль, поэтому оператор симметричен.
+
+При условии \eqref{8.7} (Робен): $N(u) + \sigma u = 0$ и $N(v) + \sigma v = 0$ на границе, откуда:
+
+\[ v N(u) + v \sigma u - u N(v) - u \sigma v = 0 \]
+
+\[ {\left. \left[ v N(u) - u N(v) \right] \right|}_{\partial \Omega} = 0 \]
+
+Следовательно, при любых граничных условиях \eqref{8.6}--\eqref{8.8} правая часть \eqref{8.9} обращается в нуль, откуда:
+
+\[ (Lu, v) = (u, Lv) \]
+
+% Оператор L симметричен в соответствующем пространстве.
+
+\textbf{Определение эллиптичности:} Оператор $L$ называется \textbf{эллиптическим} в $\overline{\Omega}$, если существует константа $\mu_0 > 0$ такая, что для всех $t_1, \ldots, t_m \in \mathbb{R}$ и всех $P \in \overline{\Omega}$:
+
+\begin{equation}
+	\Sum_{j,k=1}^{m} A_{jk}(P) t_j t_k \geq \mu_0 \Sum_{j=1}^{m} t_j^2
+\end{equation}
+
+Это условие означает \textbf{равномерную положительную определённость} матрицы коэффициентов.
+
+\textbf{Пример (оператор Трикоми):} Важный пример смешанного типа:
+
+\[ L u = y \frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} \]
+
+\[ A_{11} = y, \quad A_{21} = A_{12} = 0, \quad A_{22} = 1 \]
+
+Для области, целиком лежащей в полуплоскости $y > 0$:
+
+\[ y t_1^2 + t^2_2 \geq 0 \text{ при всех } t_1, t_2 \]
+
+Следовательно, оператор Трикоми эллиптичен в такой области.
+
+% Положительная определённость оператора:
+\textbf{Положительная определённость:} Если коэффициент $C(P)$ ограничен снизу положительным числом $c_0 > 0$, то оператор $L$ является положительно определённым.
+
+По формуле Грина:
+
+\[ (Lu, u)_H = \Int_{\Omega}^{} u Lu \, d\Omega = \Int_{\Omega}^{} \left[\Sum_{j,k=1}^{m} A_{jk} \frac{\partial u}{\partial  x_j}\frac{\partial u}{\partial x_k} + C u^2 \right] d\Omega - \Int_{\partial \Omega}^{} u N (u) dS \]
+
+При краевых условиях \eqref{8.6}, \eqref{8.8} (Дирихле и Неймана):
+
+\[ \Int_{\partial \Omega}^{} u N(u) \, dS = 0 \]
+
+Поэтому:
+
+\[ (Lu,u)_H \geq c_0 \Int_{\Omega}^{} u^2 d\Omega = \gamma^2 {\|u\|}^2_H, \quad \gamma = \sqrt{c_0} \]
+
+При условии Робена \eqref{8.7} с $\sigma(P) \geq \sigma_0 > 0$:
+
+\[ N(u) = -\sigma u \text{ на } \partial  \Omega \]
+
+\[ \Int_{\partial  \Omega}^{} u N(u) dS = -\sigma_0 \Int_{ \partial  \Omega}^{} u^2 dS \leq 0 \]
+
+откуда также следует положительная определённость оператора.
+
+\newpage
