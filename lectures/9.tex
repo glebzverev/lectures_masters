@@ -1,0 +1,117 @@
+\section{Лекция 9}
+
+\[ Lu = - \sum_{j,k=1}^{m} \frac{\partial }{\partial  x_j} (A_{jk}(P)\frac{\partial n}{\partial x_k} + c(P)u = f(P)) \label{8_1_1}\]
+
+
+
+\begin{enumerate}
+	\item з Дирихле
+	\[ (Lu, u) = \mu \sum_{j=1}^{m} \int_{\Sigma}^{}(\frac{\partial n}{\partial x_j})^2 d\Omega \geq \Sigma^2 {\|u\|}^2_H; \sigma = \sqrt{\\ae \mu_0}\]
+	\item з Робэна $\label{8_3}$
+	\[ (Lu, u) \geq (\alpha {(\int_{\Sigma}^{} \sum_{j=1})}^{n}(\frac{\partial u}{\partial x_i})^2) d\Omega + \int_{\partial \Omega}^{}n^2 dS) ; \Rightarrow (Lu, u) \geq \alpha {\|u\|}^2 \]
+	\item з Неймана
+	\[ C(P) = 0 \]
+	\[ Lu = -\sum_{j,j =1}^{m}\frac{\partial}{\partial  x_j}(A_{jk} \frac{\partial n}{\partial x_k}l) = f(P) \]
+	\[ \int_{\Omega}^{}(\cdot) d \Omega + \textrm{ ф-ла Остроградского } \]
+	\[ -\int_{S}^{} \sum_{j,k = 1}^{m} A_j \frac{\partial n}{\partial x_k} cos( \overline{n}, x) dS = 0 \]
+	\[ \Rightarrow \int_{\Omega}^{}f(P) d \Omega = 0 \]
+	\[ \int_{\Omega}^{} u d\Omega = 0 \]
+	\[ D_{L_N} = \{ u \in C^2 ( \overline{\Omega}), N(u)|_{\partial \Omega} = 0, \int_{\Omega}^{}u d \Omega = 0 \} \]
+	\[ (L_N u, n) = -\int_{\Omega}^{} u \sum_{j,k=1}^{m} \frac{\partial }{\partial x_j}(A_{jk} \frac{\partial n}{\partial x}) d\Omega = \]
+	\[ = \int_{\Omega}^{} \sum_{j,k=1}^{m} A_{jk} \frac{\partial n}{\partial x_j} \frac{\partial n}{\partial  x_n} d \Omega \geq \mu_0 \int_{k=1}^{m} (\frac{\partial n}{\partial x_k})^2 d\Omega \]
+	\[ \int_{\Omega}^{} u^2 d\Omega \leq A \int_{\Omega}^{} \sum_{k = 1}^{m} (\frac{\partial  n}{\partial x_0}dS + B (\int_{\Omega}^{} u \Omega)^2)\]
+	
+\end{enumerate}
+
+\subsection{Энергетический метод для положительных операторов}
+
+\[ Au = f, u, f \in H, A \textrm{ положительный } \]
+Все еще работает теорема о функциональной энергии
+
+\[ F(u) = (Au, u)_H - 2(u, f)_H \label{8_2_2}\]
+Энергетическое пространство порожденное оператором $ H_A $, вообще говоря его элементам нельзя сопоставить элементы из Гильбертова.
+\[ H_A - \textrm{  Энергетическое пр-во } \]
+
+\[ (u, f) \textrm{ на  } D_A - \textrm{ плотно в H и в } H_A  \]
+\[ (u,f) = lu \textrm{ Функционал } \rightarrow \textrm{ может быть ограничен или не ограницен } \]
+Если ограничен в $H_A$ продолжим на $H_A$
+
+в $ H_A $ по теореме Рисса $ \exists u_0 \in H_A (u, f) = [u, u_0]A $
+
+\[ [u - u_0, u-u_0] = {\|u\|}^2_A + {\|u_0\|}^2_A - 2{[u, u_0]}_A \]
+\[ F(u) = {\| u \|}^2_A - 2[u, u_0]_A = {\|u-u_0\|}^2_A - {\|u_0\|^2_A} \label{8_2_4} \]
+
+Минимум достигается на элементе $F(u) = u_0$. Но $ u_0 $ может не лежать в энергетическом про-ве. Обобщенное решение с конечной энергией.
+
+Если H сепарабельно $ \Rightarrow H_A $ сепарабельно $ \Rightarrow \{ \phi_n \} $ в $ H_A $
+
+\[ u_o = \sum_{n=1}^{\infty}{[u_0, \phi]}_A \phi\]
+\[ [\phi_n, u_0] = l\phi_n \]
+\[\textrm{ Если } \{\phi \} \in D_A \Rightarrow l \phi_n - (f, \phi_n) \Rightarrow u_o = \sum_{n=1}^{\infty} (f, \phi_n) \phi_n  \]
+
+\[ u_k \sum_{n=1}^{k} (f, \phi_n) \|u_k - u_0\|_{A} \rightarrow_{k \rightarrow \infty} 0 \]
+
+\[\textrm{ Если } \{\phi \} \in D_A \Rightarrow l \phi_n - (f, \phi_n) \Rightarrow u_o = \sum_{n=1}^{\infty} (f, \phi_n) \phi_n \Rightarrow = \sum_{n=1}^{\infty} (f, \phi_n) \phi_n \]
+
+\subsection{Эллиптические уравнения в бесконечной области}
+
+Пусть $\Omega$ --- бесконечная область
+\[ -\sum_{j,k=1}^{m} \frac{\partial }{\partial x_j} \left(A_{jk} (P)\frac{\partial u}{\partial x_k}\right) = f(P) \]
+
+при краевом условии задачи Дирихле
+\[ u|_{\partial \Omega} = 0\]
+
+Допустим, что коэффициенты $A_{jk}$ ограничены
+\[ D_A = \{u \in C^2(\overline{\Omega}), u|_{\partial \Omega} = 0, b(P = 0), |P| >> 1 \} \]
+
+Оператор $A$ является лишь положительным
+
+Задача \eqref{x}, \eqref{b} имеет решение с конечной энергией тогда, когда
+\[ \exists \, g(P): \quad f(P) = \operatorname{div} g(P), \quad\Int_{\Omega}^{} {|g(P)|}^2 d\Omega < \infty \]
+
+$\operatorname{div} g$ понимается в смысле "обобщенной дивергенции"
+\[ {\|u_0\|}^2_A \leq C \Int_{\Omega}^{} {| g(P) |}^2 d \Omega \]
+
+Можно указать более простое достаточное условие:
+\[ m \geq 3: \qquad \Int_{\Omega}^{} {|P|}^2 f^2 (P) d\Omega < \infty \quad \Rightarrow \quad {\|u_0\|}_A^2 \leq C^2 \Int_{\Omega}^{}{|P|}^2 f (P)d\Omega \]
+\[ m \geq 2: \qquad \Int_{\Omega}^{} f^2 (P) d\Omega < \infty \]
+
+Перейдем к задаче Неймана:
+\[ H_{A_D} = \{ u \in H' (\Omega) \textrm{ и } {u|}_{\partial  \Omega} = 0 \} \]
+
+\[ H_{A_H} = \{ \exists 0 \delta \frac{\partial u}{\partial x} \in L_2(\Omega) \} \]
+
+\[ F(u) = \Int_{k, j=1}^{m} A_{jk} \frac{\partial n}{\partial x_j} \frac{\partial n}{\partial  x_k} d \Omega - 2lu \]
+
+В случае задачи Неймана $lu$ определяется формулой:
+\[ l_N u = -\Int_{\Omega}^{} \operatorname{grad} u \cdot g \ d\Omega + \Int_{\partial \Omega}^{} u g_n d S \]
+
+В случае задачи Дирихле:
+\[ l_D u = -\Int_{\Omega}^{} \operatorname{grad} u \cdot g \ d\Omega \]
+
+Если сходится интеграл \eqref{label}, то:
+\[ lu = \Int_{\Omega}^{} u (P) f(P) d \Omega \]
+
+TODO
+\[ Au = f \]
+\[ B_ju=0; j=1,q \]
+\[ H > D_A \] знак принадлежит в обратную сторону
+\[ H_A \]
+
+При условии $ u \in D_A $, но не обязятельно $ u\in H_A $ естественные
+
+$ B_j: u \in H_A $ главные гр условия для $A$.
+
+\[ - \Delta u = f \]
+\[ \frac{\partial u}{\partial n} + \partial u = 0, \sigma > 0 \]
+\[ {(- \Delta u, v)}_H = - \Int_{}^{} v \Delta u d\Omega \]
+
+\[ \Int_{}^{} grud u grad v d\Omega - \Int_{\partial \Omega}^{}v\frac{\partial u}{\partial n} dS \]
+
+\[ F(u,u) = {\|u\|}^2_A - 2(f, u) = \Int_{\Omega}^{} ({grud}^2 u - 2u) d\Omega + \Int_{\partial \Omega}^{} \partial  u^2 dS \]
+
+\[ u_0 = \operatorname{argmin} F; \]
+\[ \frac{d}{dt} (F(u_0 + t \eta))|'_{t=0} = 0 \]
+\[ -\Int_{\Omega}^{} \eta (\Delta u_0 + f) d\Omega + \Int_{\partial \Omega}^{} \eta (\frac{\partial u_0}{\partial \eta} + \partial u_0) dS = 0 \]
+
+\newpage
