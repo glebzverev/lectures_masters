@@ -1,0 +1,116 @@
+\section{Лекция 10}
+
+\subsection{Метод Бубнова-Галеркина}
+
+Пусть линейный оператор $L$ (не обязательно положительный) определен на множестве, плотном в $H$ (гильбертовом)
+\[ Lu = f \label{10.1} \tag{10.1} \]
+
+Выбираем последовательность элементов $\{\varphi_n\}, \quad \varphi_n \in D_A $, которые назовем координатными функциями. Все они удовлетворяют некоторым однородным краевым условиям задачи \eqref{10.1}
+
+Будем считать, что как и \eqref{10.1}, так и все краевые условия линейные. Тогда и функция
+\[ u_n = \sum_{k=1}^{n}a_n \varphi_k(P) \label{10.2} \tag{10.2} \]
+
+будет удовлетворять всем краевым условиям задачи \eqref{10.1}
+
+$a_k$ выбирается таким образом, чтобы после подстановки $(A u_n - f) \perp \varphi_1, .., \varphi_n $
+\[ \Sum_{k=1}^{n} a_j (L\varphi_k, \varphi_j)  = (f, \varphi_j), \qquad j= \overline{1, n} \label{10.3} \tag{10.3} \]
+
+\subsection{Применение метода Б-Г к интегральному уравнению Фредгольма}
+
+\[ u(P) - \Int_{\Omega}^{} K(P, Q) \, u(Q) \, d\Omega = f(P) \label{10.4} \tag{10.4} \]
+
+Предполагаем следующее
+\[ \Int_{\Omega}^{}\Int_{\Omega}^{} K^2 (P, Q) \, d\Omega_P \, d\Omega_Q < \infty, \qquad \Int_{}^{}f^2(P) d\Omega < \infty \label{10.5} \tag{10.5} \] 
+
+а также единственность решения \eqref{10.4} в $H=L_2(\Omega)$
+
+Возьмем систему $\{ \varphi_n \}$ полную и ортонормированную (ПОНС)
+\[ (\varphi_i, \varphi_j) = \delta_{ij} \label{10.6} \tag{10.6} \]
+
+Положим
+\[ u_n = \Sum_{k=1}^{n}a_k \varphi_k (P) \]
+
+Подставляя в \eqref{10.4} и требуя ортогональности, а также учитывая \eqref{10.6} получим СЛАУ
+\[ a_m - \Sum_{k=1}^{n} \gamma_{mk} a_k =  (f, \varphi_m) \label{10.7} \tag{10.7} \]
+\[ \gamma_{mk} = \Int_{\Omega}^{}\Int_{\Omega}^{} K(P, Q) \varphi_m (P) \varphi_k (Q) \, d\Omega_P \, d\Omega_Q \]
+
+Введем обозначения:
+\[ K_n(P, Q) = \Sum_{k, m=1}^n \gamma_{mk} \, \varphi_m (P) \, \varphi_k (Q) \]
+\[ f_n(P) = \Sum_{k=1}^{n} (f, \varphi_k) \varphi_k (P) \]
+
+Система $\{ \varphi_n \}$ --- ПОНС, поэтому
+\[ \left. \begin{array}{l}
+	\underset{n \rightarrow \infty}{\lim} \Int_{\Omega}^{} \Int_{\Omega}^{} {\left[K_n (P, Q) - K(P, Q)\right]}^2 \, d \Omega_P \, d \Omega_Q = 0 \\
+	\underset{n \rightarrow \infty}{\lim} \Int_{\Omega}^{} {\left[ f_n(P) - f(P) \right]}^2 d\Omega = \underset{n \rightarrow \infty}{\lim} {\| f_n - f \|}^2 = 0
+\end{array} \right\} \label{10.8} \tag{10.8} \]
+
+Рассмотрим вспомогательное уравнение
+\[ v_n (P) - \Int_{\Omega}^{} K_n (P,Q) v_n (Q)  d\Omega = f_n(P) \label{10.9} \tag{10.9} \]
+
+Из теории интегральных уравнений из \eqref{10.8} следует, что при достаточно большом $n$ уравнение \eqref{10.9} разрешимо и имеет единственное решение
+\[ {\|v_n - v\|}_H \xrightarrow[n \rightarrow \infty]{} 0 \]
+
+Интегральное уравнение \eqref{10.9} можно решить. Заменяя $K_n(P,Q)$ и $f_n(P)$ их значениями, получим
+\[ v_n(P) = \Sum_{k=1}^{n} A_k \varphi_K (P) \]
+\[ A_m = \Sum_{k=1}^{n} \gamma_{mk} \Int_{\Omega}^{} v_n (Q) \, \varphi_k(Q) \, d\Omega + (f, \varphi_m) \]
+\[ A_m -\Sum_{l=1}^{n} \gamma_{mk} A_k = (f, \varphi_m), \qquad m = \overline{1,n} \]
+
+\subsection{Элементы теории приближения}
+
+TODO
+\[ H_A \supset H_N  \textrm{ - конечномерное }\]
+\[ В \exists \textrm{ норм про-во X:  } \exists \textrm{ элемент наилучшего приближения }  \]
+\[ \forall u \in X: \rho(u, H_N) = {inf}_{v \in H_N} \rho(u, v) X = C[a, b] \]
+\[ 1, x, x^2, ..., x^N, ... \]
+\[ | C[a, b] \rightarrow P_{N-1} (x) \]
+\[ L_N(x) = \Sum_{n=1}^{n} f(x_k) l_k(x) \]
+\[ \{ l_k(x) \} -\textrm{ система фундаментальных многочленов } \]
+\[ l_k(x) = \frac{(x-x^1) ... (x-x_N)}{(x_k-x_1) ... (x_k - x_N)} = \frac{\omega(x)}{(x-x_k) \omega'(x_K)} \]
+\[ l_k(x_m) = \delta _{km}; \omega (x) = П_{k=1}^{m} (x = x_k) \]
+\[ \| f - L_N(x) \|_C \leq (1+\|P\|)\rho_N (f, H_N) \]
+\[ \|P\| = {max}_{x \in [a, b]} \Sum_{k=1}^{n} |l_k(x)| = \Lambda_N - \textrm{ построение Лебега }\]
+\[ \Lambda_N - \textrm{ неограниченно возрастает при  } n\rightarrow \infty \textrm{ для всего  } C[a,b] \textrm{и сущ зависит от выбора сетки } x_1, ... , x_N\]
+\[ x_k = \frac{a+b}{2} + \frac{2}{b-a} t_k; t_K = -cos\{\frac{\pi}{2N}(2k-1)\}  \]
+\[ \Lambda_N \approx \frac{2}{\pi} ln N + 1- q_N, 0<< q_N < \frac{1}{4} \]
+\[ Lu = -\frac{d}{dx}(p(x \frac{du}{dx}) + q(x) u) \]
+\[ Lu = f\textrm{ + гр у } u(a) = u(b) + 0 \]
+\[ u_n(x) = \Sum_{k=1}^{n} a_k l_k(x); a_k = u_N(x_k) \]
+\[ \Sum_{p=1}^{n} a_p (Ll_p, l_K) = (f, l_k) = \Int_{a}^{b} f(x) ln(x) dx = f_K \]
+\[ l_k(x_m) = \delta_{km}, \omega(x) = П^{m}_{k=1} (x- x_k) \textrm{ СЛАУ с mуравнений }\]
+\[ a_{kl} = (Ll_k, l_p) = \Int_{a}^{b}p(x) \frac{dl_n(x)}{dx} \frac{dlp(x)}{dx} + \Int_{a}^{b}a(x) q(x) l_k(x) f(x) dx \]
+\[ x_1 = a; x_N = b \Rightarrow \]
+\[ l_1(x_1) = 0; l_N (X_N) = 0 \]
+
+\[ u_n(x) = \Sum_{k=2}^{N-1}u(x_K) l_N(x) \]
+\[ \Sum_{p=1}^{N-1}u_k a_{Kp} = f_{k} \]
+\[ p = w \]
+Пример
+\[ p \equiv 1, a \equiv 0 \]
+\[ f(x) = \{1, x \geq 0; -1, x<0 \} \]
+\[ N=5; x_1=-1, x_2 = -\frac{1}{2}, x_2=-\frac{1}{2}, x_3 = 0, x_4 = \frac{1}{2}, x_5=1 \]
+\[ l_2(x) = \frac{(x+1)x(x-\frac{1}{2})(x-1)}{\frac{1}{2}\cdot(-\frac{1}{2}) -1 -\frac{3}{2}} \]
+\[ l_3(x) = (x+1(x+\frac{1}{2})(x-\frac{1}{2})(x-\frac{1}{2})) \]
+\[ l_4(x)  = \frac{(x+1(x+\frac{1}{2})x(x-1))}{\frac{3}{2} \cdot 1 \cdot \frac{1}{2} \cdot -\frac{1}{2}} \]
+\[ u_N - u_2 l_2(x) + u_3l_3(x) + u_4l_4(x) \]
+\[ a_{kp} = \Int_{-1}^{1} \frac{dl_k}{dx} \frac{dl_P}{dx} dx \]
+период гр у
+\[ [a, b] = [0, 2 \pi] \]
+\[ u_N = \frac{a}{2} + \Sum_{k=1}^{} a_k cos(kx) + b_k sin(kx) \]
+\[ x_k = \frac{2 \pi}{x}(k-1) a_0, a_k, b_k \textrm{ Упр. } \]
+\[ dim H_N - 2N-1 \]
+\[ a_k cos(kx)+ b_k sin(kx) \]
+\[ \Lambda_N \frac{1}{\pi} ln N + \delta (2-\frac{2}{\pi}), 0 < \delta < 1 \]
+
+\subsection{Введение в теорию степенных сплайнов}
+
+\[ [a, b] a = x_0 < x_1 < ... < x_{N-1} < x_N = b, h_K = s_k - x_{k-1} k = \overline{0, N-1}\, h_k = x+1 - x_k\]
+
+Определение
+
+Сплайн степени n, дефекта $ \nu $:
+
+\[ S_{n\nu} = P_n (x) = \Sum_{k=0}^{n} a_p^(k) (x-x_k)^P = \Sum_{p = 0}^{n} {b'}_P{(x_{k+1} - x)}^P \]
+
+\[ (x - x_K)^P_t = \{ (x - x_k)^P, x \geq x_k; 0, x \leq x_k \} \]
+
+\newpage
