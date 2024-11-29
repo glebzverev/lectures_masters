@@ -1,0 +1,157 @@
+\section{Лекция 11}
+
+\subsection{Кусочно постоянные сплайны}
+
+Рассмотрим случай одной переменной
+\[ \Omega = [a, b] \subset \mathbb{R} \]
+
+Введем на $[a, b]$ сетку 
+\[ a = x_0 < x_1 < ... < x_{N-1} < x_N = b, \qquad h_i = x_i - x_{i-1}, \qquad h = \underset{i=1, N}{\max} \ h_i \]
+
+Зададим на каждом отрезке $(x_{i-1}, x_i)$ функцию
+\[ \varphi_i (x) =  \left\{ \begin{array}{l}
+	1, \qquad x \in (x_{i-1}, x_i) \\
+	0, \qquad x \not \in (x_{i-1}, x_i)
+\end{array} \right. \]
+
+Линейную оболочку таких функций обозначим $H_N$
+
+\begin{enumerate}
+	\item Система линейно независима
+	\item $ (\varphi_i, \varphi_j) = 0 \ \ (i \neq j), \qquad (\varphi_i, \varphi_i) = h_i $
+\end{enumerate}
+
+\textbf{Теор.} Для любой функции $u(x) \in W_p^1 (\Omega) \quad \exists v(x) \in H_N$:
+\[ {\| u - v \|}_{L_2(a,b)} \leq c h {\|u\|}_{W_p^1 (\Omega)} \]
+
+где $c = const$ не зависит от $h, u$, а норма в $W_p^1$ задается выражением
+\[ {\|u\|}_{W_p^1(\Omega)} = {\|u\|}_{L_p (\Omega)} + {\left\| \frac{du}{dx} \right\|}_{L_p (\Omega)} \]
+
+\underline{Док-во}
+\[ v = \Int_{i=1}^{N} u_i \varphi_i(x), \qquad u_i = \frac{1}{h_i} \Int_{x_{i-1}}^{x_i} u(\xi)d \xi \]
+
+Тогда при $p < \infty$
+\begin{multline*}
+	{\|u-v\|}^p_{L_p(a,b)} = \Int_{a}^{b} {|u - v|}^p dx = \Sum_{i=1}^{N} \Int_{x_{i-1}}^{x_i} {\left|u(x) - \frac{1}{h_i} - \Int_{x_{i-1}}^{x_i} u (\xi) d \xi \right|}^p dx = \\
+	= \Sum_{i=1}^{N} \Int_{x_{i-1}}^{x_i} {\left| \frac{1}{h_i} \Int_{x_{i-1}}^{x_i} \bigl( u(x) - u(\xi) \bigr) d\xi \right|}^p dx = \Sum_{i=1}^{N} \Int_{x_{i-1}}^{x_i} {\left| \frac{1}{h_i} \Int_{x_{i-1}}^{x_i} d \xi \Int_{\xi}^{x} \frac{du}{d\eta} d \eta \right|}^p dx \leq \\
+	\leq \Sum_{i=1}^{N} \Int_{x_{i-1}}^{x_i}{ \left| \frac{1}{h_i} \Int_{x_{i-1}}^{x_i} d \xi \Int_{x_{i-1}}^{x_i} \left| \frac{du}{d\eta} \right| d \eta \right|}^p dx = \Sum_{i=1}^{N} h_i {\left( \Int_{x_i-1}^{x_i} \left| \frac{du}{d\eta} \right| d \eta \right)}^p
+\end{multline*}
+
+Используя неравенство Гельдера:
+\[ \left| \Int_{\Omega}^{} u(x) v(x) dx \right| \leq {\left( \Int_{\Omega}^{} {|u(x)|}^q dx \right)}^{1/q} {\left( \Int_{\Omega}^{} {|v(x)|}^p dx \right)}^{1/p} \]
+
+получим
+\[ \Int_{x_{i-1}}^{x_i} 1 \cdot \left|\frac{du}{d\eta}\right| d\eta \leq {\left( \Int_{x_{i-1}}^{x_i} {1}^q d \eta \right)}^{1/q} {\left( \Int_{x_{i-1}}^{x_i} {\left| \frac{du}{d \eta} \right|}^p d \eta \right)}^{1/p} \]
+\[ {\left(\Int_{x_{i-1}}^{x_i} \left| \frac{du}{d\eta} \right| d\eta \right)}^p \leq h^{p/q}_i \Int_{x_i-1}^{x_i} {\left|\frac{du}{d\eta}\right|}^p d\eta \]
+\[ {\|u-v\|}^p_{L_p} \leq \Sum_{i=1}^{N} h_i^{1+p/q} \Int_{x_{i-1}}^{x_i} {\left|\frac{du}{d\eta}\right|}^p  d\eta \leq h^{1+p/q} \Int_{a}^{b} {\left|\frac{du}{d\eta}\right|}^p d\eta = h^p \Int_{a}^{b} {\left|\frac{du}{d\eta}\right|}^p d\eta \leq h^p {\|u\|}^p_{W_p^1} \]
+
+Для $L_{\infty}$ рассмотрим
+\begin{multline*}
+	|u - v| = \left| u(x) - \frac{1}{h_i} \Int_{x_{i-1}}^{x_i} u(\xi) d\xi \right| = \left| \frac{1}{h_i} \Int_{x_{i-1}}^{x_i} \bigl( u(x)- u(\xi) \bigr) d\xi \right| = \left| \frac{1}{h_i} \Int_{x_{i-1}}^{x_i} d\xi \Int_{\xi}^{x} \frac{du}{d\eta} d \eta \right| \leq \\
+	\leq h_i \underset{x \in (x_{i-1}, x_i)}{\sup} \left| \frac{du}{d\eta} \right| \leq h {\|u\|}_{W_{\infty}^1(\Omega)}
+\end{multline*}
+
+\[  \Rightarrow {\|u -v\|}_{L_{\infty}(\Omega)} \leq h {\|u\|}_{W_\infty^1 (\Omega)} \]
+\[ \hfill \square \] \\
+
+Для устойчивости нам необходимо, чтобы собственные значения матрицы Грама $ \widehat{M} = \bigl(M_{ij} = (\varphi_i, \varphi_j)\bigr) $  были ограничены сверху и снизу положительными числами $ a_1 < \lambda < a_2 $, не зависящими от $N$
+
+\[ {\varphi_i} (x) = \frac{1}{\sqrt{h_i}} \left\{ \begin{array}{l}
+	1, \quad x \in (x_{i-1}, x_i) \\
+	0, \quad x \not \in (x_{i-1}, x_i)
+\end{array} \right. \]
+
+\[ \Omega \subset \mathcal{R}^m, \Omega = \cup^{N}_{i=1} \Omega_i \]
+\[ {max}_{i=\overline{1, N}} {sup}_{x_{ij} \leq \Omega_i} |x-y| \leq h \]
+
+\subsection{Кусочно линейные базисные функции}
+
+Введем на $[a, b]$ сетку 
+\[ a = x_0 < x_1 < ... < x_{N-1} < x_N = b, \qquad h_i = x_i - x_{i-1}, \qquad h = \underset{i=1, N}{\max} \ h_i \]
+
+Зададим на каждом отрезке $(x_{i-1}, x_i)$ функцию
+\[ \varphi_i (x) =  \left\{ \begin{array}{ll}
+	\cfrac{x - x_{i-1}}{h_i}, \qquad & x\in (x_{i-1} , x_i) \\
+	\cfrac{x_{i+1} - x}{h_{i+1}}, \qquad & x \in (x_{i}, x_{i+1}) \\
+	0, \qquad & x \not \in (x_{i-1}, x_{i+1})
+\end{array} \right. \qquad i = \overline{1, N-1} \]
+\[ \varphi_i (x) =  \left\{ \begin{array}{ll}
+	\cfrac{x_1 - x}{h_1}, \qquad & x \in (x_0, x_1) \\
+	0, \qquad & x \not \in (x_0, x_1)
+\end{array} \right. \]
+\[ \varphi_N (x) =  \left\{ \begin{array}{ll}
+	\cfrac{x - x_{N-1}}{h_N}, \qquad & x\in (x_{N-1} , x_N) \\
+	0, \qquad & x \not \in (x_{N-1}, x_N)
+\end{array} \right. \]
+
+\begin{figure}[h]
+	\centering
+	\begin{tikzpicture}[scale=1.2, >=Stealth]
+		
+		% First triangle
+		\draw[->] (-0.5,0) -- (2.5,0) node[right] {$x$};
+		\draw[->] (1,-0.2) -- (1,1.5);
+		\draw[thick] (0,0) -- (1,1) -- (2,0);
+		\node at (1.8,0.8) {$\varphi_i(x)$};
+		\node at (0,-0.2) [below] {$x_{i-1}$};
+		\node at (1,-0.2) [below] {$x_i$};
+		\node at (2,-0.2) [below] {$x_{i+1}$};
+		\node at (1,1) [left] {$1$};
+		
+		% Second triangle
+		\begin{scope}[xshift=3.5cm]
+			\draw[->] (-0.5,0) -- (2.5,0) node[right] {$x$};
+			\draw[->] (0,-0.2) -- (0,1.5);
+			\draw[thick] (0,1) -- (1,0);
+			\node at (0.8,0.8) {$\varphi_0(x)$};
+			\node at (0,-0.2) [below] {$x_0$};
+			\node at (1,-0.2) [below] {$x_1$};
+			\node at (0,1) [left] {$1$};
+		\end{scope}
+		
+		% Third triangle
+		\begin{scope}[xshift=7cm]
+			\draw[->] (-0.5,0) -- (2.5,0) node[right] {$x$};
+			\draw[->] (1,-0.2) -- (1,1.5);
+			\draw[thick] (0,0) -- (1,1);
+			\node at (0.2,0.8) {$\varphi_N(x)$};
+			\node at (0,-0.2) [below] {$x_{N-1}$};
+			\node at (1,-0.2) [below] {$x_N$};
+			\node at (1.4,1) [left] {$1$};
+		\end{scope}
+		
+	\end{tikzpicture}
+	\caption{Базисные функции}
+	\label{fig:basis_functions}
+\end{figure}
+
+\[ {(\varphi_i, \varphi_j)}_{L_2(\Omega)} = \left\{ \begin{array}{l}
+	0, \qquad |i-j| > 1 \\
+	1, \qquad |i-j| \leq 1
+\end{array} \right. \]
+\[ v_N = \Sum_{i = 0}^{N} a_i \varphi_i(x) \quad \in H_N \]
+
+\textbf{Теор.} Для любой функции $u(x) \in W_2^2 (\Omega) \quad \exists v(x) \in H_N = W_2^{1, h} (\Omega)$:
+\[ {\| u - v \|}_{L_2(\Omega)} \leq c_1 h^2 {\|u\|}_{W_2^2 (\Omega)}  \]
+\[ {\| u - v \|}_{W_2^1 (\Omega)}  \leq c_2 h {\|u\|}_{W_2^2 (\Omega)}  \]
+
+где $c_1, c_2 = const$ не зависят от $h, u$ \\
+
+\underline{Док-во}
+\[ v(x) = \Sum_{i=0}^{N} u(x_i) \varphi_i (x) \]
+
+Оценим разность $u - v$ в произвольной точке $x \in (x_{i-1}, x_i)$. С учетом того, что функция $v(x)$ кусочно-линейная и $dv(x)/dx = (u(x_i) - u(x_{i-1}))/h_i$
+\begin{multline*}
+	u(x) - v(x) = \Int_{x_{i-1}}^{x} \frac{d}{d\xi}(u-v) d\xi = \Int_{x_{i-1}}^{x} \left[ \frac{du(\xi)}{d\xi} - \frac{u(x_i) - u(x_{i-1})}{h_i} \right] d\xi = \\
+	= \frac{1}{h_i} \Int_{x_{i-1}}^{x} d\xi \Int_{x_{i-1}}^{x_i} \left[ \frac{du (\xi)}{d\xi} - \frac{du(\eta)}{d \eta} \right] d\eta = \frac{1}{h_i} \Int_{x_{i-1}}^{x} d\xi \Int_{x_{i-1}}^{x_i} d \eta \Int_{\eta}^{\xi} \frac{d^2u(t)}{{dt}^2} dt
+\end{multline*}
+
+Применяя к \eqref{label} неравенство КБ и расширяя пределы интегрирования
+\[ {|u(x) - v(x)|}^2 \leq h_i^3 \Int_{x_{i-1}}^{x_i} {\left|\frac{d^2u}{{dt}^2} \right|}^2 dt \]
+
+Суммируя по $i = 1,...,N$ получим \eqref{label}. Если же сначала продифференцировать, а затем провести те же самые рассуждения и оценки, то получим \eqref{label}.
+\[ \Sum_{i=1}^{N} (\cdot) {\|u-v\|}_{L_2 (\Omega)} \leq c_1 h^2 {\|u\|}_{W^2_2} (\Omega)\]
+
+TODO: добавить переходов
+
+\newpage
